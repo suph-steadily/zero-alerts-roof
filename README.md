@@ -1,6 +1,6 @@
 # roof-dial
 
-Job 1 of the dwelling alert project: where should the automatic roof surfacing exclusion's score bar sit? **`SCOPE.md` is the document to read (and share).** This folder also carries the extract SQL and a runnable sweep tool so the analysis is reproducible by anyone.
+Job 1 of the dwelling alert project: where should the automatic roof surfacing exclusion's score bar sit? **`SCOPE.md` is the document to read (and share)**; the presentable version is the shared page: https://claude.ai/code/artifact/f04c8819-6ab0-4912-86c3-4f3328acadb0. This folder also carries the extract SQL, the verification queries behind every headline number (`sql/probes_20260820.sql`), and a runnable sweep tool so the analysis is reproducible by anyone.
 
 ## Run it
 
