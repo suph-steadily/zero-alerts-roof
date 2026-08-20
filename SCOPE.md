@@ -2,7 +2,7 @@
 
 *Job 1 of the dwelling alert project: duplicate the underwriter's roof surfacing exclusion work. Scoped 2026-08-20; every data claim below was verified against the warehouse that day (Metabase db 235, read-only probes).*
 
-**Status update, same day: Phases 1 and 2 plus a first cut of Phase 3 have run. The numbers and the read are in [RESULTS-2026-08-20.md](RESULTS-2026-08-20.md); headline: the defensible band is bar 80 to 85 on 101+ only, and Curry's bottom-20% proposal maps to exactly bar 83.**
+**Status update, same day: Phases 1 and 2 plus a first cut of Phase 3 have run. The numbers and the read are in [RESULTS-2026-08-20.md](RESULTS-2026-08-20.md); headline: the defensible band is bar 80 to 85 on 101+ only, and the bottom-20% cut is exactly bar 83.**
 
 ## 1. The question
 
@@ -89,7 +89,7 @@ Dead end, recorded so nobody re-walks it: `dbt_data_science.fct_roof_exclusion` 
 
 ## 7. Decision framing and watch-items
 
-- **Underwriting sets the dial.** The analysis prices settings; it never picks one. The named starting proposal is Curry's bottom-20% idea; price it as one of the candidate bars.
+- **Underwriting sets the dial.** The analysis prices settings; it never picks one. The starting proposal is the bottom-20% cut (bar 83); price it as one of the candidate bars.
 - **Texas first.** Longest model bake (live May 11). If widening works, Texas shows it first; check the manual-rate drop there before generalizing.
 - **Compliance lane, measured explicitly.** Auto-exclusions on quotes no underwriter ever saw grew from 0.4% to 5.0% of never-referred 101+ quotes in launch states. A wider bar grows this lane mechanically. Size it at each candidate bar and flag it (disclosure and filing implications; CO/RI/WV stay off, and CO/KY/GA image-vintage rules land 1/1/2027).
 - **The curve is a snapshot of current underwriter behavior.** If the automation widens, underwriters will adapt; the catch rate is measured against how they behave today, and step 6 of the playbook (prove it with the alert still on, watch the override rate) is what protects against drift.
