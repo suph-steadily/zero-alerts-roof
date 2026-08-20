@@ -4,13 +4,13 @@
 
 ## 1. The question
 
-Today the robot applies the roof surfacing exclusion only when the roof score model says "exclude", which happens on about 4 of 100 old-home referrals. Underwriters hand-apply the same exclusion far more often. One dial controls the gap: the score bar (roof score runs 1 to 100, higher is worse; the model today fires around the mid-90s).
+Today the automation applies the roof surfacing exclusion only when the roof score model says "exclude", which happens on about 4 of 100 old-home referrals. Underwriters hand-apply the same exclusion far more often. One dial controls the gap: the score bar (roof score runs 1 to 100, higher is worse; the model today fires around the mid-90s).
 
-**This project answers: where should the bar sit so the robot captures a good share of the exclusions underwriters would have applied, without excluding many roofs an underwriter would have left alone?** Laid out on a curve: capture rate on one axis, over-applies on the other, one point per candidate bar. Underwriting picks the operating point; this analysis prices the options.
+**This project answers: where should the bar sit so the automation captures a good share of the exclusions underwriters would have applied, without excluding many roofs an underwriter would have left alone?** Laid out on a curve: capture rate on one axis, over-applies on the other, one point per candidate bar. Underwriting picks the operating point; this analysis prices the options.
 
 ## 2. What the 8/20 probes verified
 
-**The pool is big and hand-dominated.** On bound new-business 101+ homes created May 1 to Aug 15, 2026: 1,077 dwellings carry the exclusion, of which 59 were auto-applied (5.5%) and 1,018 were hand-applied by an underwriter (94.5% — agents cannot set this coverage). After the July 30 nationwide expansion, the go-forward catchable pool is the "flag on, robot did not fire" lane: roughly 80 to 120 hand-applies per month in 101+ alone.
+**The pool is big and hand-dominated.** On bound new-business 101+ homes created May 1 to Aug 15, 2026: 1,077 dwellings carry the exclusion, of which 59 were auto-applied (5.5%) and 1,018 were hand-applied by an underwriter (94.5% — agents cannot set this coverage). After the July 30 nationwide expansion, the go-forward catchable pool is the "flag on, automation did not fire" lane: roughly 80 to 120 hand-applies per month in 101+ alone.
 
 **A score bar can separate them.** Hand-applied roofs score far worse than left-alone roofs (median 85 vs 45 on bound 101+). Only 8 of 1,018 hand-applies (0.8%) have no score at all, so almost nothing is invisible to a bar. Example sweep on the bound 101+ book (dwelling counts, May 1 to Aug 15; denominators: 1,018 hand-applied, 4,404 left-alone):
 
@@ -39,7 +39,7 @@ Cut by age band (80-90 / 91-100 / 101+), by state (Texas separately, longest bak
 **3b. The harm overlay.** At each bar: the share of post-bind roof NOEs (underwriter adds the exclusion after bind, 90-day window, per 100 bound) and Condition - Roof NOCs that had a bind-time score at or above the bar, i.e. the harm a wider bar would have prevented. Roof NOEs land a median 35 to 38 days after bind, so a 60-day window gives a fair early read where the 90-day runway is not complete yet.
 
 **3c. The over-apply disposition (the honest false-positive count).** "The model would exclude where the underwriter chose not to" is not automatically a mistake. Each over-apply gets classified:
-- *(a) late catch* — that home drew a roof NOE or roof NOC within 90 days anyway; the robot was right early
+- *(a) late catch* — that home drew a roof NOE or roof NOC within 90 days anyway; the automation was right early
 - *(b) true disagreement* — an underwriter reviewed the quote and left the roof alone
 - *(c) presumed false positive* — never reviewed by an underwriter, clean at 90 days
 Plus a hand review of 10 to 20 quotes sitting just above the candidate bar, with Curry's team, to sanity-check what (c) looks like in real photos.
@@ -53,7 +53,7 @@ Plus a hand review of 10 to 20 quotes sitting just above the candidate bar, with
 - Exclusion tested with `= 'selected'` (string column; boolean-style tests read false on everything).
 - Year built guarded `> 1700` (zero-default integer; 25 quotes affected in the probe window).
 - Exclude Apr 27-28 (NJ/AZ pause) and May 29 (aborted all-states flip) from any before/after comparison.
-- After July 30 the flag is on nationwide, so hand-applies from August onward are true "robot did not fire" cases; May to July mixes flag-on and flag-off states, which the state cut handles.
+- After July 30 the flag is on nationwide, so hand-applies from August onward are true "automation did not fire" cases; May to July mixes flag-on and flag-off states, which the state cut handles.
 - 90-day outcomes are complete for binds through about May 22 (as of Aug 20); later binds use the 60-day window or wait.
 - Rates always name their denominator and window. "NOC" and "NOE" follow the house definitions (transactions, not letters).
 
@@ -90,7 +90,7 @@ Dead end, recorded so nobody re-walks it: `dbt_data_science.fct_roof_exclusion` 
 - **Underwriting sets the dial.** The analysis prices settings; it never picks one. The named starting proposal is Curry's bottom-20% idea; price it as one of the candidate bars.
 - **Texas first.** Longest model bake (live May 11). If widening works, Texas shows it first; check the manual-rate drop there before generalizing.
 - **Compliance lane, measured explicitly.** Auto-exclusions on quotes no underwriter ever saw grew from 0.4% to 5.0% of never-referred 101+ quotes in launch states. A wider bar grows this lane mechanically. Size it at each candidate bar and flag it (disclosure and filing implications; CO/RI/WV stay off, and CO/KY/GA image-vintage rules land 1/1/2027).
-- **The curve is a snapshot of current underwriter behavior.** If the robot widens, underwriters will adapt; the catch rate is measured against how they behave today, and step 6 of the playbook (prove it with the alert still on, watch the override rate) is what protects against drift.
+- **The curve is a snapshot of current underwriter behavior.** If the automation widens, underwriters will adapt; the catch rate is measured against how they behave today, and step 6 of the playbook (prove it with the alert still on, watch the override rate) is what protects against drift.
 - **Floors, not ceilings.** Post-bind harm rates on unreviewed books are floors: the alert also scares off some bad risks before bind.
 
 ## 8. What lives in this folder

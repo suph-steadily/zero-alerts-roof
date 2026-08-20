@@ -3,9 +3,9 @@
 Input rows come from ``sql/01_bound_book.sql`` (one CSV row per bound
 new-business dwelling). Each dwelling lands in one of three groups:
 
-  * auto: the exclusion is on the quote and the robot put it there
+  * auto: the exclusion is on the quote and the automation put it there
           (flag 'yes' and the model decision 'exclude')
-  * hand: the exclusion is on the quote and the robot did not put it there
+  * hand: the exclusion is on the quote and the automation did not put it there
           (an underwriter did; agents cannot set this coverage)
   * none: no roof surfacing exclusion on the quote (left alone)
 

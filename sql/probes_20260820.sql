@@ -5,7 +5,7 @@
 -- (Aug is a partial month and right-censored: recent drafts still convert).
 
 -- ============================================================================
--- CLAIM: "5.5% robot / 94.5% hand-applied" and "go-forward pool 80-120/mo"
+-- CLAIM: "5.5% automation / 94.5% hand-applied" and "go-forward pool 80-120/mo"
 -- (provenance of the exclusion on bound 101+ and 91-100 homes, by month)
 -- ============================================================================
 SELECT toStartOfMonth(pol_created_timestamp) AS mo,
