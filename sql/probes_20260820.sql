@@ -178,3 +178,40 @@ GROUP BY f.f_actor_class;
 -- cape_roof_condition_rating is dirty: '0','2','-1', raw JSON; epoch-zero dates).
 -- No Steadily score, no decision, no flag, no who-applied-it. Salvage value:
 -- roof_uw_action_count as an independent "a UW touched this roof" cross-check.
+
+-- ============================================================================
+-- CLAIM (added same day): "homes with the exclusion at bind do not get
+-- roof-cancelled" and "today's setting caught 0 of the 106 roof NOCs"
+-- (April+ cohort binds; roof-NOC rate by bind score band x exclusion at bind)
+-- ============================================================================
+WITH coh AS (
+    SELECT o_policy_id AS policy_id
+    FROM dbt_dev.damr_uarnoe_cohort_20260816
+    WHERE o_bind_ts >= toDateTime64('2026-04-01 00:00:00', 6)
+    GROUP BY o_policy_id
+),
+noc AS (
+    SELECT DISTINCT f_policy_id
+    FROM dbt_dev.damr_uarnoe_final_20260816
+    WHERE f_ev_class = 'cancellation' AND f_canc_reason = 'Inspection'
+      AND f_uw_canc_reason = 'Condition - Roof' AND f_days_since_bind BETWEEN 0 AND 90
+),
+nb AS (
+    SELECT policy_id,
+           max(pol_prop_steadily_roof_condition_score_condition_score) AS score,
+           max(if(prop_cov_roof_surfacing_exclusion = 'selected', 1, 0)) AS rse
+    FROM dbt.ipod_standard_mga_raw_policy_info
+    WHERE quote_type = 'NewBusiness' AND quote_status = 'Issued'
+      AND policy_id IN (SELECT policy_id FROM coh)
+    GROUP BY policy_id
+)
+SELECT multiIf(score IS NULL, 'unscored', score >= 90, '90+',
+               score >= 83, '83-89', 'below 83') AS score_band,
+       rse AS exclusion_at_bind,
+       count() AS bound_policies,
+       countIf(policy_id IN (SELECT f_policy_id FROM noc)) AS roof_nocs
+FROM nb GROUP BY score_band, exclusion_at_bind ORDER BY score_band, exclusion_at_bind;
+-- Verified: 90+ with exclusion 0/214 vs without 21/1,167 (1.8 per 100);
+-- 83-89: 1/58 vs 16/785. Companion cut on the 106 roof NOCs themselves:
+-- model decision said 'exclude' on 0 of 106 (even the 12 scoring 95+);
+-- only 1 of 106 carried the exclusion at bind (hand-applied, 83-89 band).
