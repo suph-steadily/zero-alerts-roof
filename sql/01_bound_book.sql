@@ -33,9 +33,11 @@ FROM dbt.ipod_standard_mga_raw_policy_info AS p
 LEFT JOIN
 (
     -- substantive-alert basis from the 8/16 cohort recipe
-    SELECT quote_id, max(requires_uw_review) AS uw_reviewed
+    -- verified 2026-08-20: the column is alert_category (not category),
+    -- and requires_uw_review is a Bool that needs the toUInt8 cast
+    SELECT quote_id, max(toUInt8(requires_uw_review)) AS uw_reviewed
     FROM dbt_upc.uw_alerts_per_quote
-    WHERE category NOT IN ('DATA_SAFEGUARD', 'VALIDATION', 'SHOWSTOPPER', 'SYSTEM_ERROR')
+    WHERE alert_category NOT IN ('DATA_SAFEGUARD', 'VALIDATION', 'SHOWSTOPPER', 'SYSTEM_ERROR')
     GROUP BY quote_id
 ) AS a ON a.quote_id = p.quote_id
 WHERE p.quote_type = 'NewBusiness'

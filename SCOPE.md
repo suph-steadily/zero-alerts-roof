@@ -2,6 +2,8 @@
 
 *Job 1 of the dwelling alert project: duplicate the underwriter's roof surfacing exclusion work. Scoped 2026-08-20; every data claim below was verified against the warehouse that day (Metabase db 235, read-only probes).*
 
+**Status update, same day: Phases 1 and 2 plus a first cut of Phase 3 have run. The numbers and the read are in [RESULTS-2026-08-20.md](RESULTS-2026-08-20.md); headline: the defensible band is bar 80 to 85 on 101+ only, and Curry's bottom-20% proposal maps to exactly bar 83.**
+
 ## 1. The question
 
 Today the automation applies the roof surfacing exclusion only when the roof score model says "exclude", which happens on about 4 of 100 old-home referrals. Underwriters hand-apply the same exclusion far more often. One dial controls the gap: the score bar (roof score runs 1 to 100, higher is worse; the model today fires around the mid-90s).
