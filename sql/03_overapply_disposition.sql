@@ -11,6 +11,29 @@
 -- version. Snapshot-based for now, same rebuild note as 02.
 -- Set the bar here:
 --   {bar} -> e.g. 80
+--
+-- ############################################################################
+-- WITHDRAWN 2026-08-21 - DO NOT QUOTE THE OUTPUT OF THIS FILE.
+-- The negative label is invalid, not merely incomplete. Harm comes only from
+-- the frozen three-slice snapshot (outcome_policies below), but the `bound`
+-- denominator is EVERY issued age-80+ policy from April onward, with no
+-- snapshot-cohort membership and no 90-day maturity requirement. The final
+-- LEFT JOIN therefore classifies as clean:
+--   * every policy outside the outcome census, and
+--   * every policy still inside its 90-day runway.
+-- Both land in presumed_false_positive, which is why that share came out at
+-- 72-75%. Calling it a "ceiling" understated the problem.
+--
+-- Second defect: uw_reviewed means "an alert required a look at this quote",
+-- so the true_disagreement class cannot be read as "an underwriter looked at
+-- the roof and chose to leave it".
+--
+-- To make this quotable: join every candidate to an explicit outcome-cohort
+-- manifest plus a follow-up end date, and classify each row as one of
+--   harm_observed | mature_clean | right_censored | outside_outcome_census.
+-- Only mature, in-census policies may enter a false-positive denominator.
+-- roof_dial/overlay.py has the same gap (no outcome-observation eligibility).
+-- ############################################################################
 
 WITH
 outcome_policies AS (

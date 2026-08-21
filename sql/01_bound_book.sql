@@ -11,6 +11,27 @@
 -- uw_reviewed comes from the alert table the 8/16 cohort build used; it marks
 -- "an underwriter was required to look at this quote" and powers the
 -- over-apply disposition (true disagreement vs never reviewed).
+--
+-- KNOWN LIMITS (2026-08-21 review; see RESULTS-2026-08-20.md "Corrections"):
+--   1. SURVIVOR SAMPLE. quote_status = 'Issued' keeps bound policies only, but
+--      the exclusion is applied BEFORE bind and can change whether a quote
+--      binds. This describes bound survivors under historical underwriting,
+--      not the traffic a wider rule would meet, so monthly over-apply volume
+--      is likely understated. The decision-grade version builds the cohort at
+--      score/decision time over ALL eligible quotes and keeps bind/non-bind
+--      (and time to bind) as an outcome.
+--   2. AGE AND WINDOW DO NOT MATCH THE MEMO. This file is age >= 80 with an
+--      April 1 start and no end date; the memo's primary Phase 1 curve is
+--      101+ over May 1 - Aug 15. Uncomment the age and date bounds to
+--      reproduce it, and pin the model version (see the optional cuts below).
+--   3. MODEL VERSION IS NOT PINNED, so the curve pools v1.1.x (which scores
+--      the book 5-10 points hot) with v1.2.0. Pooling is NOT uniformly a
+--      conservative floor: at bar 80 it moves capture 58.0% -> 60.7% while
+--      moving over-per-catch 0.87 -> 1.10. Any quoted bar must be priced on
+--      v1.2.0 alone.
+--   4. uw_reviewed IS NOT AN OBSERVED ROOF REVIEW. It means "an alert required
+--      a look at this quote". It cannot carry "the underwriter looked at the
+--      roof and disagreed" without roof-specific review/action evidence.
 
 SELECT
     p.quote_id                                                        AS quote_id,

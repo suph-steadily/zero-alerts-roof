@@ -5,8 +5,9 @@ import unittest
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 
 from roof_dial.sweep import (  # noqa: E402
-    AUTO, HAND, NONE, Dwelling, classify, read_banded, sweep, sweep_banded,
+    AUTO, HAND, NONE, Dwelling, SweepPoint, classify, read_banded, sweep, sweep_banded,
 )
+from roof_dial.report import marginal_steps  # noqa: E402
 
 EXAMPLES = pathlib.Path(__file__).resolve().parents[1] / "examples"
 
@@ -90,6 +91,48 @@ class TestBandedReproducesProbe(unittest.TestCase):
         counts = read_banded(str(EXAMPLES / "bound_101plus_bands_20260820.csv"))
         with self.assertRaises(ValueError):
             sweep_banded(counts, bars=(75,))
+
+
+if __name__ == "__main__":
+    unittest.main()
+
+
+class MarginalStepsTest(unittest.TestCase):
+    """The 8/20 memo read the running average as the cost of moving the bar.
+
+    These pin the real marginal curve off the memo's own Phase 1 counts, so the
+    mistake cannot come back silently.
+    """
+
+    def _pts(self):
+        rows = [(95, 227, 102), (90, 394, 244), (85, 516, 429),
+                (83, 557, 528), (80, 618, 682), (75, 707, 927)]
+        pts = [
+            SweepPoint(
+                segment="ALL", bar=float(b), hand_total=1018, hand_unscored=8,
+                catches=c, catch_pct=100.0 * c / 1018, left_alone_total=4404,
+                over_applies=o, over_share_pct=100.0 * o / 4404,
+                over_per_catch=(o / c if c else None),
+                catches_per_month=None, over_per_month=None,
+            )
+            for b, c, o in rows
+        ]
+        return marginal_steps(pts)
+
+    def test_step_costs_match_the_published_marginal_curve(self):
+        steps = self._pts()
+        self.assertIsNone(steps[95.0])              # nothing steps onto the top bar
+        self.assertAlmostEqual(steps[90.0], 0.85, places=2)
+        self.assertAlmostEqual(steps[85.0], 1.52, places=2)
+        self.assertAlmostEqual(steps[83.0], 2.41, places=2)
+        self.assertAlmostEqual(steps[80.0], 2.52, places=2)
+        self.assertAlmostEqual(steps[75.0], 2.75, places=2)
+
+    def test_step_cost_is_not_the_running_average(self):
+        """At bar 83 the running average is 0.95 and the step cost is 2.41."""
+        steps = self._pts()
+        self.assertGreater(steps[83.0], 2.0)
+        self.assertAlmostEqual(528 / 557, 0.95, places=2)
 
 
 if __name__ == "__main__":

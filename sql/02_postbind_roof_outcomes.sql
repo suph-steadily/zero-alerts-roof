@@ -16,6 +16,36 @@
 -- table, never through f_ev_class alone.
 -- Era note: scores exist on April+ binds only (Jan 0% / Feb 0% / Mar 10% /
 -- Apr 89% / May 99% / Jun-Jul 100%). Quote scored-rates on the April+ era.
+--
+-- KNOWN DEFECTS (2026-08-21 review; the Phase 2 headline shares were withdrawn
+-- from RESULTS-2026-08-20.md because of #1):
+--   1. NO DWELLING-AGE FILTER anywhere in this file, so the output describes
+--      the whole snapshot book - 88% of which is the under-91 clean lane. Its
+--      shares (38.5% of roof NOEs, 44.3% of roof NOCs at bar 80) CANNOT be set
+--      beside the 101+-only costs from 01; a 101+ rule cannot catch the events
+--      that produce them. The 101+ figure is ~27%. Add the age bound before
+--      quoting anything from here against the proposed rule.
+--   2. SYNTHETIC BIND ROW. The nb CTE below takes max(score), max(exclusion),
+--      max(flag) and max(decision) INDEPENDENTLY across all NewBusiness rows
+--      for a policy, with no issued-version selection. At ~1.16 dwellings per
+--      quote that can stitch together a home that never existed: the highest
+--      score from one dwelling with the coverage state of another, and the
+--      lexicographically greatest decision from a third. Direction of error
+--      unknown. The fix is to pick the canonical as-of-bind quote version
+--      (argMax on the version/issue timestamp, not max per column) and to
+--      carry the dwelling key through to the outcome so a policy-level harm is
+--      not attributed to every dwelling on the policy.
+--   3. GRAIN MISMATCH DOWNSTREAM. Phase 1 counts dwellings, this counts
+--      policies, and overlay.py applies a policy-level harm to every
+--      qualifying dwelling. Report both grains and re-run single-dwelling
+--      policies as a sensitivity check.
+--   4. RIGHT-CENSORING IS NOT HANDLED. ~30% of these binds lack a full 90-day
+--      runway. "The 60-day and 90-day shares are similar" is a weak substitute
+--      for a mature cohort or a survival/IPCW treatment.
+--   5. THE ROOF-EVENT JOIN MAY NOT BE EVENT-SPECIFIC: roof detail is reduced to
+--      DISTINCT e_quote_id and joined to final events on quote id alone. Audit
+--      whether one quote id can carry several final events; join on an event
+--      identifier if one exists.
 
 WITH
 roof_add AS (

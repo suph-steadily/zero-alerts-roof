@@ -2,7 +2,9 @@
 
 *Job 1 of the dwelling alert project: duplicate the underwriter's roof surfacing exclusion work. Scoped 2026-08-20; every data claim below was verified against the warehouse that day (Metabase db 235, read-only probes).*
 
-**Status update, same day: Phases 1 and 2 plus a first cut of Phase 3 have run. The numbers and the read are in [RESULTS-2026-08-20.md](RESULTS-2026-08-20.md); headline: the defensible band is bar 80 to 85 on 101+ only, and the bottom-20% cut is exactly bar 83.**
+**Status update, same day: Phases 1 and 2 plus a first cut of Phase 3 have run. The numbers and the read are in [RESULTS-2026-08-20.md](RESULTS-2026-08-20.md); headline: the score separates hand-applied exclusions from left-alone homes strongly on 101+ binds, and the bottom-20% cut of that book falls at bar 83.**
+
+**Corrected 2026-08-21** after a senior data-science pressure test. The earlier headline - "the defensible band is bar 80 to 85" - is withdrawn: 80, 83 and 85 are candidate settings for a version-pinned shadow test, and no bar can be called optimal without a value for one caught home against one unwanted exclusion. The whole-book harm-prevention shares and the Phase 3 false-positive share are also withdrawn. See the Corrections section of the results memo.
 
 ## 1. The question
 
@@ -25,7 +27,9 @@ Today the automation applies the roof surfacing exclusion only when the roof sco
 
 (These are banded preview numbers from the probe, reproduced by `python3 -m roof_dial example`. The real Phase 1 curve sweeps finer bars and cuts by age band, state, and model version.)
 
-**The post-bind outcomes join back to bind-time scores, 100% match.** Preview: of underwriter endorsements that added the roof exclusion after bind (April+ binds, 90-day window), 69% had a bind-time score of 60+ (434 of 633). Of "Condition - Roof" cancellations, 73% (80 of 110). A wider bar would have handled most of the post-bind roof harm before bind. This matters because the roof surfacing exclusion alone is 53 to 59% of all UW corrective NOEs.
+**The post-bind outcomes join back to bind-time scores, 100% match.** Preview: of underwriter endorsements that added the roof exclusion after bind (April+ binds, 90-day window), 69% had a bind-time score of 60+ (434 of 633). Of "Condition - Roof" cancellations, 72.6% (77 of 106) *(corrected 8/21: the earlier 80 of 110 came from a probe missing the 0-90 day filter)*. This matters because the roof surfacing exclusion alone is 53 to 59% of all UW corrective NOEs.
+
+*Two corrections to how this preview may be read (8/21):* it has **no dwelling-age filter**, so it describes the whole snapshot book rather than the 101+ population the rule targets - the 101+ figure is roughly 27%, not 38.5%. And a high bind-time score among homes that later took harm is **visibility, not prevention**: it says the score could have seen these homes, not that excluding them would have changed the outcome.
 
 **Two hard limits, stated up front:**
 - **Scores exist only on April 2026+ binds** (the model shipped mid-March). Jan to Mar is unusable for the score axis; the backtest runs on the April+ book.
@@ -38,7 +42,7 @@ Today the automation applies the roof surfacing exclusion only when the roof sco
 - *Over-apply* = a left-alone bound dwelling at or above T. Reported three ways: share of the left-alone book, over-applies per catch, and absolute over-applies per month.
 Cut by age band (80-90 / 91-100 / 101+), by state (Texas separately, longest bake), and with the score model version pinned to v1.2.0 plus a pooled sensitivity check (v1.1.5 ran alongside it into the spring).
 
-**3b. The harm overlay.** At each bar: the share of post-bind roof NOEs (underwriter adds the exclusion after bind, 90-day window, per 100 bound) and Condition - Roof NOCs that had a bind-time score at or above the bar, i.e. the harm a wider bar would have prevented. Roof NOEs land a median 35 to 38 days after bind, so a 60-day window gives a fair early read where the 90-day runway is not complete yet.
+**3b. The harm overlay.** At each bar: the share of post-bind roof NOEs (underwriter adds the exclusion after bind, 90-day window, per 100 bound) and Condition - Roof NOCs that had a bind-time score at or above the bar, i.e. the harm a wider bar would have been able to SEE at bind. This is score sensitivity among observed harms, not a prevention estimate: it does not measure the effect of applying the exclusion on cancellation, bind rate, retention or loss. Roof NOEs land a median 35 to 38 days after bind, so a 60-day window gives a fair early read where the 90-day runway is not complete yet.
 
 **3c. The over-apply disposition (the honest false-positive count).** "The model would exclude where the underwriter chose not to" is not automatically a mistake. Each over-apply gets classified:
 - *(a) late catch* — that home drew a roof NOE or roof NOC within 90 days anyway; the automation was right early
