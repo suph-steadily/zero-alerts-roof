@@ -1,0 +1,549 @@
+<title>Pick the Bar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper: #F7F6F2;
+    --card: #FFFFFF;
+    --ink: #22252B;
+    --muted: #5C6270;
+    --faint: #8A8F9B;
+    --line: #E3E1DB;
+    --line-soft: #EDEBE5;
+    --accent: #B4562A;
+    --accent-ink: #9A4820;
+    --capture: #1D72B0;
+    --over: #B4562A;
+    --tile: #F0EEE8;
+    --code-bg: #EFEDE7;
+    --warn-bg: #F6EFE4;
+    --shadow: 0 1px 3px rgba(34, 37, 43, 0.07);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1B1D22;
+      --card: #23262D;
+      --ink: #E8E6E1;
+      --muted: #A6ABB6;
+      --faint: #7E838E;
+      --line: #33373F;
+      --line-soft: #2B2E36;
+      --accent: #D07347;
+      --accent-ink: #DA8258;
+      --capture: #4E9AD0;
+      --over: #D07347;
+      --tile: #22252C;
+      --code-bg: #272A32;
+      --warn-bg: #2A2620;
+      --shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1B1D22;
+    --card: #23262D;
+    --ink: #E8E6E1;
+    --muted: #A6ABB6;
+    --faint: #7E838E;
+    --line: #33373F;
+    --line-soft: #2B2E36;
+    --accent: #D07347;
+    --accent-ink: #DA8258;
+    --capture: #4E9AD0;
+    --over: #D07347;
+    --tile: #22252C;
+    --code-bg: #272A32;
+    --warn-bg: #2A2620;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.62;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 56px 24px 80px; }
+  .prose { max-width: 680px; }
+  h1, h2, h3 {
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    text-wrap: balance;
+    line-height: 1.15;
+    margin: 0;
+  }
+  h1 { font-size: clamp(2.2rem, 5vw, 3.1rem); font-weight: 800; letter-spacing: -0.015em; }
+  h2 { font-size: 1.45rem; font-weight: 700; margin: 0 0 14px; }
+  p { margin: 0 0 14px; }
+  a { color: var(--accent-ink); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin: 0 0 10px;
+  }
+  section { margin-top: 52px; }
+  .lede { font-size: 1.12rem; color: var(--muted); max-width: 640px; }
+  .lede strong { color: var(--ink); }
+  header .meta {
+    font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: 0.75rem;
+    color: var(--faint);
+    margin-top: 18px;
+  }
+  .banner {
+    background: var(--warn-bg);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 0.92rem;
+    margin-top: 26px;
+    max-width: 680px;
+  }
+  .banner strong { font-weight: 600; }
+
+  .rule-box {
+    background: var(--tile);
+    border: 1px solid var(--line-soft);
+    border-radius: 8px;
+    padding: 18px 20px;
+    max-width: 680px;
+    margin: 18px 0 6px;
+  }
+  .rule-box .r-def {
+    font-family: "Archivo", Arial, sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .rule-box .r-note { font-size: 0.9rem; color: var(--muted); margin-top: 8px; }
+
+  .chart-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 20px 20px 16px;
+    box-shadow: var(--shadow);
+    margin-top: 22px;
+    position: relative;
+  }
+  .chart-head { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: baseline; justify-content: space-between; margin-bottom: 10px; }
+  .chart-title { font-weight: 600; font-size: 0.95rem; }
+  .chart-sub { font-size: 0.78rem; color: var(--faint); }
+  .slider-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; padding: 4px 0 14px; border-bottom: 1px solid var(--line-soft); margin-bottom: 14px; }
+  .slider-row label { font-size: 0.85rem; font-weight: 600; white-space: nowrap; }
+  .slider-row input[type="range"] { flex: 1; min-width: 160px; accent-color: var(--capture); height: 22px; }
+  .r-read {
+    font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: 0.9rem; font-weight: 500;
+    background: var(--code-bg);
+    border-radius: 5px;
+    padding: 3px 10px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .chart-scroll { overflow-x: auto; }
+  #stepchart svg { width: 100%; height: auto; display: block; min-width: 560px; }
+  .tooltip {
+    position: absolute;
+    pointer-events: none;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 0.78rem;
+    line-height: 1.45;
+    padding: 7px 10px;
+    border-radius: 5px;
+    max-width: 240px;
+    opacity: 0;
+    transition: opacity 0.12s;
+    z-index: 5;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tooltip { transition: none; }
+  }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 16px; }
+  .tile { background: var(--tile); border: 1px solid var(--line-soft); border-radius: 6px; padding: 14px 16px 12px; }
+  .tile .num {
+    font-family: "Archivo", Arial, sans-serif;
+    font-size: 1.9rem; font-weight: 800; letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums; line-height: 1.1;
+  }
+  .tile .num.implied { color: var(--capture); }
+  .tile .lbl { font-size: 0.8rem; color: var(--muted); margin-top: 5px; line-height: 1.4; }
+  .tile-note { font-size: 0.85rem; color: var(--muted); margin-top: 12px; min-height: 1.4em; }
+  .tile-note strong { color: var(--ink); }
+
+  table { border-collapse: collapse; width: 100%; font-size: 0.88rem; font-variant-numeric: tabular-nums; }
+  .table-scroll { overflow-x: auto; margin-top: 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); box-shadow: var(--shadow); }
+  th, td { padding: 10px 14px; text-align: left; vertical-align: top; border-top: 1px solid var(--line-soft); }
+  thead th {
+    border-top: none;
+    font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  tbody th { font-weight: 600; white-space: nowrap; }
+  td.hl, th.hl { background: color-mix(in srgb, var(--capture) 7%, transparent); }
+  .windows td:nth-child(2) { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; font-size: 0.82rem; }
+  .foot { font-size: 0.82rem; color: var(--muted); margin-top: 12px; max-width: 680px; }
+  .foot p { margin: 0 0 8px; }
+  .limits { max-width: 680px; padding-left: 0; list-style: none; counter-reset: lim; margin: 0; }
+  .limits li { counter-increment: lim; padding-left: 40px; position: relative; margin-bottom: 14px; }
+  .limits li::before {
+    content: counter(lim);
+    position: absolute; left: 0; top: 2px;
+    font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: 0.78rem; font-weight: 500;
+    color: var(--accent-ink);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ask {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--capture);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 20px 24px;
+    max-width: 680px;
+    font-size: 1.02rem;
+  }
+  .status-chip {
+    display: inline-block;
+    font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .status-chip.ask-chip { color: var(--accent-ink); border-color: var(--accent); }
+  footer { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 18px; font-size: 0.8rem; color: var(--faint); }
+  footer p { margin: 0 0 6px; }
+</style>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">Roof dial · Phase 4 · decision matrix</p>
+  <h1>Pick the bar</h1>
+  <p class="lede" style="margin-top:18px">The analysis prices the settings; <strong>underwriting sets the dial</strong>. The curve has no knee — no point where the math stops you — so the bar cannot be chosen from the data alone. It follows mechanically from one number that only underwriting can supply: <strong>the exchange rate</strong>.</p>
+  <div class="banner"><strong>Status:</strong> 80, 83 and 85 are candidates for a version-pinned shadow test, not production settings. Every figure is from the corrected results memo (8/21); nothing withdrawn appears here. Fuller story: <a href="https://claude.ai/code/artifact/f04c8819-6ab0-4912-86c3-4f3328acadb0">The Roof Dial</a>.</div>
+  <p class="meta">bound NB 101+ dwellings · created May 1 – Aug 15, 2026 · pooled model versions · sources: RESULTS-2026-08-20.md (corrected 8/21)</p>
+</header>
+
+<section>
+  <h2>The decision, stated properly</h2>
+  <div class="rule-box">
+    <p class="r-def">The exchange rate R: how many unwanted exclusions is one caught home worth?</p>
+    <p class="r-note">R&nbsp;=&nbsp;1 means you would trade one-for-one. R&nbsp;=&nbsp;2.5 means a caught home is worth 2.5 exclusions an underwriter would have left alone. Given R, the rule is: <strong style="color:var(--ink)">keep widening the bar while the next step down costs less than R</strong>. Drag R below to see which bar it implies.</p>
+  </div>
+
+  <div class="chart-card" id="chartcard">
+    <div class="chart-head">
+      <span class="chart-title">What each step down the dial costs</span>
+      <span class="chart-sub">over-applies per extra catch · 101+ bound book, May 1 – Aug 15</span>
+    </div>
+    <div class="slider-row">
+      <label for="rslider">Underwriting's R</label>
+      <input type="range" id="rslider" min="0.5" max="3.0" step="0.05" value="1.75"
+             aria-describedby="rread" aria-label="Exchange rate: over-applies one caught home is worth">
+      <span class="r-read" id="rread">R = 1.75</span>
+    </div>
+    <div class="chart-scroll"><div id="stepchart"></div></div>
+    <div class="tooltip" id="tip" role="status"></div>
+    <div class="tiles">
+      <div class="tile"><div class="num implied" id="t-bar">85</div><div class="lbl">implied bar</div></div>
+      <div class="tile"><div class="num" id="t-capture">50.7%</div><div class="lbl">capture of 1,018 hand-applies</div></div>
+      <div class="tile"><div class="num" id="t-catch">147</div><div class="lbl">catches / month</div></div>
+      <div class="tile"><div class="num" id="t-over">123</div><div class="lbl">over-applies / month</div></div>
+    </div>
+    <div class="tile-note" id="t-note"></div>
+  </div>
+
+  <div class="foot prose">
+    <p>Two honest notes. <strong>Bar 83&#8217;s window is razor-thin (2.41–2.52):</strong> the bottom-20% cut is a capacity heuristic — automate the worst fifth of the book — not a marginal-cost sweet spot, and its 20% point must be re-derived on v1.2.0-only eligible traffic. And <strong>these windows sit on the pooled bound-survivor curve:</strong> the v1.2.0-only cut (priced at bar 80 alone: 0.87 over per catch vs 1.10 pooled) says the true windows will move; the version-pinned re-cut firms them up.</p>
+    <p>R does not exist yet anywhere in the dwelling-alert framework — the tolerance is recorded as unset. And because the lived cost of an over-apply is still unmeasured (exactly 1 post-bind removal of an auto-applied exclusion so far; the pushback re-pull lands ~October), R is set on judgment today and audited by the shadow test and the October re-pull.</p>
+  </div>
+</section>
+
+<section>
+  <h2>The same rule as a table</h2>
+  <div class="table-scroll">
+    <table class="windows">
+      <thead><tr><th scope="col">if underwriting&#8217;s R is&#8230;</th><th scope="col">the bar is</th><th scope="col">because the next step down costs</th></tr></thead>
+      <tbody>
+        <tr><td>below 0.85</td><td>95</td><td>0.85 (onto 90) — already too dear</td></tr>
+        <tr><td>0.85 – 1.52</td><td>90</td><td>1.52 (onto 85)</td></tr>
+        <tr><td>1.52 – 2.41</td><td>85</td><td>2.41 (onto 83)</td></tr>
+        <tr><td>2.41 – 2.52</td><td>83</td><td>2.52 (onto 80)</td></tr>
+        <tr><td>2.52 – 2.75</td><td>80</td><td>2.75 (onto 75)</td></tr>
+        <tr><td>above 2.75</td><td>below 80 — re-price first</td><td>steps steepen: 3.50, 4.52, 6+</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>The matrix</h2>
+  <p class="prose">Per-month figures divide the 3.5-month bound-book counts. The memo&#8217;s other base — the censored Aug 1–15 go-forward pool — runs about half these at bar 80; quote one, say which. This page uses the bound-book base throughout.</p>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">status quo</th>
+          <th scope="col">bar 90</th>
+          <th scope="col">bar 85</th>
+          <th scope="col">bar 83 <span class="status-chip">bottom-20% cut</span></th>
+          <th scope="col">bar 80</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">capture of the 1,018 hand-applies</th>
+          <td>5.5% of total exclusion work<a href="#fn1">*</a></td>
+          <td>38.7% (394)</td>
+          <td>50.7% (516)<br><span style="color:var(--faint)">CI 47.6–53.8</span></td>
+          <td>54.7% (557)<br><span style="color:var(--faint)">CI 51.6–57.7</span></td>
+          <td>60.7% (618)<br><span style="color:var(--faint)">CI 57.7–63.7</span></td>
+        </tr>
+        <tr>
+          <th scope="row">catches / month</th>
+          <td>~14 (go-forward)</td><td>113</td><td>147</td><td>159</td><td>177</td>
+        </tr>
+        <tr>
+          <th scope="row">over-applies / month</th>
+          <td>~0</td><td>70</td><td>123</td><td>151</td><td>195</td>
+        </tr>
+        <tr>
+          <th scope="row">marginal cost of the step down to here</th>
+          <td>—</td><td>0.85 (from 95)</td><td>1.52 (from 90)</td><td>2.41 (from 85)</td><td>2.52 (from 83)</td>
+        </tr>
+        <tr>
+          <th scope="row">exchange-rate window where this is the stop</th>
+          <td>R &lt; 0.85<a href="#fn2">†</a></td><td>0.85 – 1.52</td><td>1.52 – 2.41</td><td>2.41 – 2.52</td><td>2.52 – 2.75</td>
+        </tr>
+        <tr>
+          <th scope="row">never-referred compliance lane</th>
+          <td>~0</td><td>share not sized</td><td>40% of over-applies<br><span style="color:var(--faint)">per-month not sized</span></td><td>not sized</td><td>~35% ≈ <strong>~34 quotes/mo</strong><br><span style="color:var(--faint)">soft; go-forward base</span></td>
+        </tr>
+        <tr>
+          <th scope="row">roof-cancelled homes (of 106) the setting would have seen<a href="#fn3">‡</a></th>
+          <td><strong>0</strong></td><td>22</td><td>30</td><td>38</td><td>47</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="foot" id="fn1">
+    <p><strong>*</strong> Status quo is not &#8220;bar 95.&#8221; The live decision uses non-score inputs and fired on 59 of 1,077 exclusions in the window (5.5% of the total exclusion work, ~14/mo go-forward) — far below what a plain bar-95 rule would catch (227, ~65/mo). It also applied the exclusion on <strong>0 of the 106 roof-cancelled homes, including all 12 that scored 95+</strong>: effectively no cancellation protection at today&#8217;s setting.</p>
+    <p id="fn2"><strong>†</strong> Strictly &#8220;stay at 95&#8221;; steps above 95 were not priced.</p>
+    <p id="fn3"><strong>‡</strong> <em>Visibility, not prevention</em>, and whole-book numbers (the extract has no age filter): a 101+-only rule reaches only the 101+ subset, and on already-reviewed 101+ binds only ~27% of post-bind leaks scored 80+. The with-exclusion vs without comparison is association only (Fisher pooled p&nbsp;=&nbsp;0.078) and partly definitional — an excluded roof has little left to cancel for. Do not quote this row as prevented cancellations.</p>
+  </div>
+</section>
+
+<section>
+  <h2>What this matrix cannot tell you</h2>
+  <ol class="limits">
+    <li><strong>Survivor sample.</strong> The curve is built on bound quotes; the exclusion goes on before bind and can change whether a quote binds. Monthly over-apply volume is likely understated.</li>
+    <li><strong>Capture measures imitation, not accuracy.</strong> &#8220;Hand-apply vs left alone&#8221; is a label of today&#8217;s workflow, and underwriters will adapt once the automation widens.</li>
+    <li><strong>Pooled across model versions.</strong> Only bar 80 has a v1.2.0-only price. The re-cut decides whether 83 survives as the capacity point and where the windows land.</li>
+    <li><strong>No prevention estimate exists.</strong> Nothing here demonstrates that applying the exclusion prevents harm. The sharper pilot question is acceptance — bind rate, abandonment, overrides, removals, complaints — and whether exposure falls or merely moves into the contract.</li>
+    <li><strong>Over-apply cost is a count, not a verdict</strong> until the October pushback re-pull.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Gates before any bar reaches production</h2>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th scope="col">gate</th><th scope="col">owner</th><th scope="col">status</th></tr></thead>
+      <tbody>
+        <tr><td>Exchange rate R set (even as a range)</td><td>underwriting</td><td><span class="status-chip ask-chip">the ask</span></td></tr>
+        <tr><td>Version-pinned, decision-time Phase 1 re-cut (v1.2.0, all eligible quotes, 20% point re-derived)</td><td>analysis</td><td><span class="status-chip">open — decides if 83 survives</span></td></tr>
+        <tr><td>Shadow test at the chosen candidate(s), 101+ only, version-pinned</td><td>analysis + model owner</td><td><span class="status-chip">scoped, not started</span></td></tr>
+        <tr><td>Compliance / filing sign-off on the never-referred lane (~34/mo at bar 80)</td><td>compliance</td><td><span class="status-chip">open watch-item</span></td></tr>
+        <tr><td>Translation into the shipped rule (non-score inputs; check the Texas zero-fire)</td><td>model owner</td><td><span class="status-chip">open</span></td></tr>
+        <tr><td>Curry photo session, 10–20 quotes just above the candidate bar</td><td>Curry&#8217;s team</td><td><span class="status-chip">open</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="ask">
+    <p class="eyebrow" style="margin-bottom:8px">The ask, in one paragraph</p>
+    <p style="margin:0">Underwriting supplies R — or a range, which may be enough: any R between 1.52 and 2.41 points at 85, anything just past 2.5 points at 80, and 83 needs a nearly exact 2.4–2.5 or the capacity argument. With R in hand, approve the shadow test on the implied bar (bracket it with a neighbor if R sits near a boundary), and the version-pinned re-cut plus the October pushback re-pull turn today&#8217;s judgment into a measured setting.</p>
+  </div>
+</section>
+
+<footer>
+  <p>Sources: <code>alert-north-star/dwelling-alert/roof-dial/RESULTS-2026-08-20.md</code> (corrected 2026-08-21 after the data-science pressure test) and <code>DECISION-MATRIX.md</code> in the same folder. Verification queries: <code>sql/probes_20260820.sql</code>.</p>
+  <p>Per-month figures use the 3.5-month bound-book base; the censored Aug 1–15 go-forward pool runs roughly half at bar 80 (~114 catches vs ~98 over-applies/mo). Marginal costs and windows are pooled across model versions, pending the v1.2.0 re-cut.</p>
+</footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var steps = [
+    { from: 95, to: 90, cost: 0.85, catches: 167, overs: 142 },
+    { from: 90, to: 85, cost: 1.52, catches: 122, overs: 185 },
+    { from: 85, to: 83, cost: 2.41, catches: 41,  overs: 99  },
+    { from: 83, to: 80, cost: 2.52, catches: 61,  overs: 154 },
+    { from: 80, to: 75, cost: 2.75, catches: 89,  overs: 245 },
+    { from: 75, to: 70, cost: 3.50, catches: 58,  overs: 203 },
+    { from: 70, to: 65, cost: 4.52, catches: 44,  overs: 199 },
+    { from: 65, to: 60, cost: 6.56, catches: 34,  overs: 223 },
+    { from: 60, to: 55, cost: 6.03, catches: 38,  overs: 229 }
+  ];
+  var bars = {
+    95: { capture: "22.3%", catchMo: "65",  overMo: "29"  },
+    90: { capture: "38.7%", catchMo: "113", overMo: "70"  },
+    85: { capture: "50.7%", catchMo: "147", overMo: "123" },
+    83: { capture: "54.7%", catchMo: "159", overMo: "151" },
+    80: { capture: "60.7%", catchMo: "177", overMo: "195" },
+    75: { capture: "69.4%", catchMo: "202", overMo: "265" },
+    70: { capture: "75.1%", catchMo: "219", overMo: "323" },
+    65: { capture: "79.5%", catchMo: "231", overMo: "380" },
+    60: { capture: "82.8%", catchMo: "241", overMo: "443" },
+    55: { capture: "86.5%", catchMo: "252", overMo: "509" }
+  };
+  var notes = {
+    95: "Note: bar 95 is still far wider than the status quo, which catches ~14/mo through non-score inputs.",
+    83: "Note: 83’s window is razor-thin. It stands on the capacity argument (bottom-20% cut), and the 20% point must be re-derived on v1.2.0 traffic.",
+    80: "Note: past 80 the steps steepen (2.75, 3.50, 4.52…). 80 is the widest priced candidate.",
+    75: "Below 80 is not a priced candidate — re-price before considering it.",
+    70: "Below 80 is not a priced candidate — re-price before considering it."
+  };
+
+  var X0 = 96, XMAX = 7, W = 720, ROWH = 34, PAD_T = 26, PAD_B = 46;
+  var H = PAD_T + steps.length * ROWH + PAD_B;
+  function xs(v) { return X0 + (W - X0 - 58) * (v / XMAX); }
+
+  var svgNS = "http://www.w3.org/2000/svg";
+  var svg = document.createElementNS(svgNS, "svg");
+  svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+  svg.setAttribute("role", "img");
+  svg.setAttribute("aria-label", "Bar chart: over-applies per extra catch for each step down the score bar, from 95 down to 55. Values: " + steps.map(function (s) { return s.from + " to " + s.to + ": " + s.cost; }).join(", ") + ".");
+
+  function el(name, attrs, text) {
+    var n = document.createElementNS(svgNS, name);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (text !== undefined) n.textContent = text;
+    return n;
+  }
+
+  // faint grid
+  for (var g = 1; g <= 6; g++) {
+    svg.appendChild(el("line", { x1: xs(g), x2: xs(g), y1: PAD_T - 8, y2: H - PAD_B + 4, stroke: "var(--line-soft)", "stroke-width": 1 }));
+    svg.appendChild(el("text", { x: xs(g), y: H - PAD_B + 18, "text-anchor": "middle", "font-size": 11, fill: "var(--faint)", "font-family": "IBM Plex Mono, monospace" }, String(g)));
+  }
+  svg.appendChild(el("text", { x: xs(3.5), y: H - 8, "text-anchor": "middle", "font-size": 11, fill: "var(--faint)", "font-family": "Public Sans, sans-serif" }, "over-applies per extra catch"));
+
+  var rowEls = [];
+  steps.forEach(function (s, i) {
+    var y = PAD_T + i * ROWH;
+    var bar = el("rect", { x: xs(0), y: y + 7, width: Math.max(2, xs(s.cost) - xs(0)), height: 18, rx: 3, fill: "var(--over)" });
+    var lbl = el("text", { x: X0 - 10, y: y + 21, "text-anchor": "end", "font-size": 12.5, fill: "var(--muted)", "font-family": "IBM Plex Mono, monospace" }, s.from + " → " + s.to);
+    var val = el("text", { x: xs(s.cost) + 7, y: y + 21, "font-size": 12, "font-weight": 600, fill: "var(--ink)", "font-family": "IBM Plex Mono, monospace" }, s.cost.toFixed(2));
+    var hit = el("rect", { x: 0, y: y, width: W, height: ROWH, fill: "transparent" });
+    hit.setAttribute("data-i", i);
+    svg.appendChild(bar); svg.appendChild(lbl); svg.appendChild(val); svg.appendChild(hit);
+    rowEls.push({ bar: bar, lbl: lbl, hit: hit });
+  });
+
+  // divider under the priced-candidate region (steps onto 90/85/83/80)
+  var divY = PAD_T + 4 * ROWH - 1;
+  svg.appendChild(el("line", { x1: X0 - 88, x2: W - 8, y1: divY, y2: divY, stroke: "var(--line)", "stroke-width": 1, "stroke-dasharray": "4 4" }));
+  svg.appendChild(el("text", { x: W - 8, y: divY + 14, "text-anchor": "end", "font-size": 10.5, fill: "var(--faint)", "font-family": "Public Sans, sans-serif" }, "below 80: steepens — not a priced candidate"));
+
+  // R threshold line + chip
+  var rLine = el("line", { y1: PAD_T - 12, y2: H - PAD_B + 4, stroke: "var(--capture)", "stroke-width": 2 });
+  var rChipBg = el("rect", { y: 0, width: 64, height: 18, rx: 9, fill: "var(--capture)" });
+  var rChipTx = el("text", { y: 13, "text-anchor": "middle", "font-size": 11, "font-weight": 600, fill: "var(--card)", "font-family": "IBM Plex Mono, monospace" });
+  svg.appendChild(rLine); svg.appendChild(rChipBg); svg.appendChild(rChipTx);
+
+  document.getElementById("stepchart").appendChild(svg);
+
+  var slider = document.getElementById("rslider");
+  var rread = document.getElementById("rread");
+  var tiles = {
+    bar: document.getElementById("t-bar"),
+    capture: document.getElementById("t-capture"),
+    catchMo: document.getElementById("t-catch"),
+    overMo: document.getElementById("t-over"),
+    note: document.getElementById("t-note")
+  };
+
+  function impliedBar(r) {
+    var bar = 95;
+    for (var i = 0; i < steps.length; i++) {
+      if (steps[i].cost <= r) bar = steps[i].to; else break;
+    }
+    return bar;
+  }
+
+  function render() {
+    var r = parseFloat(slider.value);
+    rread.textContent = "R = " + r.toFixed(2);
+    var stop = impliedBar(r);
+    var x = xs(r);
+    rLine.setAttribute("x1", x); rLine.setAttribute("x2", x);
+    var chipX = Math.min(Math.max(x - 32, X0), W - 72);
+    rChipBg.setAttribute("x", chipX);
+    rChipTx.setAttribute("x", chipX + 32);
+    rChipTx.textContent = "R " + r.toFixed(2);
+    steps.forEach(function (s, i) {
+      var taken = s.cost <= r;
+      rowEls[i].bar.setAttribute("fill-opacity", taken ? "1" : "0.22");
+      rowEls[i].bar.setAttribute("stroke", taken ? "none" : "var(--over)");
+      rowEls[i].bar.setAttribute("stroke-width", taken ? "0" : "1");
+      rowEls[i].lbl.setAttribute("fill", taken ? "var(--ink)" : "var(--muted)");
+    });
+    var b = bars[stop];
+    tiles.bar.textContent = String(stop);
+    tiles.capture.textContent = b.capture;
+    tiles.catchMo.textContent = b.catchMo;
+    tiles.overMo.textContent = b.overMo;
+    var warn = stop < 80 ? notes[75] : (notes[stop] || "");
+    tiles.note.innerHTML = warn ? "<strong>" + warn.split(":")[0] + ":</strong>" + warn.substring(warn.indexOf(":") + 1) : "";
+    if (!warn) tiles.note.textContent = "Steps cheaper than R are taken (solid); the first step at or above R stops the walk.";
+  }
+  slider.addEventListener("input", render);
+  render();
+
+  // tooltips
+  var tip = document.getElementById("tip");
+  var card = document.getElementById("chartcard");
+  rowEls.forEach(function (row, i) {
+    var s = steps[i];
+    function show(evt) {
+      tip.innerHTML = "<strong>" + s.from + " → " + s.to + "</strong><br>+" + s.catches + " catches, +" + s.overs + " over-applies<br>" + s.cost.toFixed(2) + " over-applies per extra catch";
+      tip.style.opacity = "1";
+      move(evt);
+    }
+    function move(evt) {
+      var r = card.getBoundingClientRect();
+      var tx = evt.clientX - r.left + 14, ty = evt.clientY - r.top + 14;
+      if (tx > r.width - 200) tx = evt.clientX - r.left - 200;
+      tip.style.left = tx + "px";
+      tip.style.top = ty + "px";
+    }
+    function hide() { tip.style.opacity = "0"; }
+    row.hit.addEventListener("pointerenter", show);
+    row.hit.addEventListener("pointermove", move);
+    row.hit.addEventListener("pointerleave", hide);
+  });
+})();
+</script>
