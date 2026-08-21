@@ -93,10 +93,6 @@ class TestBandedReproducesProbe(unittest.TestCase):
             sweep_banded(counts, bars=(75,))
 
 
-if __name__ == "__main__":
-    unittest.main()
-
-
 class MarginalStepsTest(unittest.TestCase):
     """The 8/20 memo read the running average as the cost of moving the bar.
 
@@ -133,7 +129,6 @@ class MarginalStepsTest(unittest.TestCase):
         steps = self._pts()
         self.assertGreater(steps[83.0], 2.0)
         self.assertAlmostEqual(528 / 557, 0.95, places=2)
-
 
 if __name__ == "__main__":
     unittest.main()

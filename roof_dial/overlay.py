@@ -20,7 +20,7 @@ its coverage.
 The disposition classifies over-applies at ONE bar:
   late_catch               that home drew a roof NOE or NOC in-window anyway
   true_disagreement        an underwriter reviewed the quote, left the roof alone
-  presumed_false_positive  never reviewed, clean in the window
+  presumed_false_positive (WITHDRAWN 8/21: no outcome-eligibility state, see report banner)  never reviewed, clean in the window
 """
 
 from __future__ import annotations
