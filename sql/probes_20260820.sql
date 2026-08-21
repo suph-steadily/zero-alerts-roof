@@ -6,6 +6,8 @@
 
 -- ============================================================================
 -- CLAIM: "5.5% automation / 94.5% hand-applied" and "go-forward pool 80-120/mo"
+-- (8/21 note: 80-120 is the May-Jul flag-on lane; the post-expansion Aug floor
+--  is ~174/mo in 101+ - see RESULTS "Texas and go-forward volumes")
 -- (provenance of the exclusion on bound 101+ and 91-100 homes, by month)
 -- ============================================================================
 SELECT toStartOfMonth(pol_created_timestamp) AS mo,
@@ -132,13 +134,17 @@ FROM ev LEFT JOIN nb ON nb.policy_id = ev.f_policy_id;
 -- unscored); April+ binds are 94.3% scored, 434 of 633 at 60+ (68.6%).
 
 -- ============================================================================
--- CLAIM: "73% of Condition - Roof NOCs had a bind score of 60+"
+-- CLAIM: "72.6% of Condition - Roof NOCs (0-90 day window) had a bind score of 60+"
+-- (corrected 8/21: the original probe omitted the 0-90 day filter and read
+--  80 of 110 = 72.7%; with the filter, matching the Phase 2 window, it is
+--  77 of 106 = 72.6%. SCOPE.md carries the correction.)
 -- ============================================================================
 WITH ev AS (
     SELECT f_policy_id, min(f_days_since_bind) AS d, min(f_bind_ts) AS bind_ts
     FROM dbt_dev.damr_uarnoe_final_20260816
     WHERE f_ev_class = 'cancellation' AND f_canc_reason = 'Inspection'
       AND f_uw_canc_reason = 'Condition - Roof'
+      AND f_days_since_bind BETWEEN 0 AND 90
     GROUP BY f_policy_id
 ),
 nb AS (
@@ -153,7 +159,8 @@ SELECT count() AS policies, countIf(nb.score IS NOT NULL) AS scored,
        countIf(nb.score >= 60) AS ge60, countIf(nb.score >= 80) AS ge80,
        countIf(nb.score >= 60 AND toDate(ev.bind_ts) >= toDate('2026-04-01')) AS ge60_apr_plus
 FROM ev LEFT JOIN nb ON nb.policy_id = ev.f_policy_id;
--- Verified: 190 policies, 115 scored; April+ binds 100% scored, 80 of 110 at 60+ (72.7%).
+-- Verified with the 0-90d filter: April+ binds 77 of 106 at 60+ (72.6%).
+-- (The unfiltered run read 190 policies / 80 of 110 at 60+; kept for the record.)
 
 -- ============================================================================
 -- CLAIM: "the pushback lane is unmeasured (n=1 on auto applies)"

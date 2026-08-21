@@ -21,8 +21,10 @@
 -- LEFT JOIN therefore classifies as clean:
 --   * every policy outside the outcome census, and
 --   * every policy still inside its 90-day runway.
--- Both land in presumed_false_positive, which is why that share came out at
--- 72-75%. Calling it a "ceiling" understated the problem.
+-- Both are structurally labelled clean and split between true_disagreement and
+-- presumed_false_positive by uw_reviewed, which is why the FP share came out at
+-- 72-75% (and true_disagreement is inflated too). Calling it a "ceiling"
+-- understated the problem.
 --
 -- Second defect: uw_reviewed means "an alert required a look at this quote",
 -- so the true_disagreement class cannot be read as "an underwriter looked at

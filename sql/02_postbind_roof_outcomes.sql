@@ -84,7 +84,7 @@ events AS (
     INNER JOIN roof_remove r ON r.e_quote_id = f.f_ev_quote_id
 ),
 nb AS (
-    -- bind-time state, aggregated over dwellings (one NB version per policy)
+    -- bind-time state: independent max() across ALL NB rows - see KNOWN DEFECT 2
     SELECT policy_id,
            max(pol_prop_steadily_roof_condition_score_condition_score) AS bind_score,
            max(if(prop_cov_roof_surfacing_exclusion = 'selected', 1, 0)) AS bind_rse_selected,

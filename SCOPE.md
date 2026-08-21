@@ -14,14 +14,14 @@ Today the automation applies the roof surfacing exclusion only when the roof sco
 
 ## 2. What the 8/20 probes verified
 
-**The pool is big and hand-dominated.** On bound new-business 101+ homes created May 1 to Aug 15, 2026: 1,077 dwellings carry the exclusion, of which 59 were auto-applied (5.5%) and 1,018 were hand-applied by an underwriter (94.5% — agents cannot set this coverage). After the July 30 nationwide expansion, the go-forward catchable pool is the "flag on, automation did not fire" lane: roughly 80 to 120 hand-applies per month in 101+ alone.
+**The pool is big and hand-dominated.** On bound new-business 101+ homes created May 1 to Aug 15, 2026: 1,077 dwellings carry the exclusion, of which 59 were auto-applied (5.5%) and 1,018 were hand-applied by an underwriter (94.5% — agents cannot set this coverage). After the July 30 nationwide expansion, the go-forward catchable pool is the "flag on, automation did not fire" lane. *(Reconciled 8/21: the May-Jul flag-on lane ran roughly 80 to 120 hand-applies per month in 101+; the post-expansion Aug 1-15 read, doubled to a month, puts the nationwide floor at ~174/mo in 101+ — RESULTS uses the ~174 figure.)*
 
 **A score bar can separate them.** Hand-applied roofs score far worse than left-alone roofs (median 85 vs 45 on bound 101+). Only 8 of 1,018 hand-applies (0.8%) have no score at all, so almost nothing is invisible to a bar. Example sweep on the bound 101+ book (dwelling counts, May 1 to Aug 15; denominators: 1,018 hand-applied, 4,404 left-alone):
 
 | bar | captures (of 1,018 hand-applies) | over-applies (of 4,404 left-alone) | over-applies per catch |
 |----|----|----|----|
 | 91+ | 367 (36.1%) | 214 (4.9%) | 0.58 |
-| 81+ | 599 (58.8%) | 632 (14.3%) | 1.06 |
+| 81+ | 599 (58.8%) | 632 (14.4%) | 1.06 |
 | 71+ | 758 (74.5%) | 1,076 (24.4%) | 1.42 |
 | 61+ | 838 (82.3%) | 1,524 (34.6%) | 1.82 |
 

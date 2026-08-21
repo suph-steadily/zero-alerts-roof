@@ -22,7 +22,8 @@
 --      (and time to bind) as an outcome.
 --   2. AGE AND WINDOW DO NOT MATCH THE MEMO. This file is age >= 80 with an
 --      April 1 start and no end date; the memo's primary Phase 1 curve is
---      101+ over May 1 - Aug 15. Uncomment the age and date bounds to
+--      101+ over May 1 - Aug 15. Enable the commented-out age and date bounds
+--      in the Optional cuts to
 --      reproduce it, and pin the model version (see the optional cuts below).
 --   3. MODEL VERSION IS NOT PINNED, so the curve pools v1.1.x (which scores
 --      the book 5-10 points hot) with v1.2.0. Pooling is NOT uniformly a
@@ -67,5 +68,8 @@ WHERE p.quote_type = 'NewBusiness'
   AND p.pol_prop_year_built > 1700
   AND 2026 - p.pol_prop_year_built >= 80
 -- Optional cuts for later phases:
+--   AND 2026 - p.pol_prop_year_built >= 101           -- the memo's 101+ curve
+--   AND p.pol_created_timestamp >= toDateTime('2026-05-01 00:00:00')
+--   AND p.pol_created_timestamp <  toDateTime('2026-08-16 00:00:00')  -- May 1 - Aug 15 window
 --   AND p.pol_prop_state = 'TX'                       -- Texas-first read
 --   AND p.pol_prop_steadily_roof_condition_score_model_version = 'v1.2.0'   -- pin the model
