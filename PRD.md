@@ -105,7 +105,7 @@ could apply. If the model applies it, one big reason for the alert goes away.
    underwriter ever saw (66% of auto-exclusion binds in July). And the benefit side on
    marginal roofs is UNMEASURABLE until ~spring 2027: 24 of the 25 excluded-book wind/hail
    claims predate the roof score.
-3. **Yes, we knock excluded homes more, and not for the roof.** (KNOCK-RATES-2026-08-25.md)
+3. **Yes, we knock excluded homes more, and not for the roof.** (NOC-RATES-2026-08-25.md)
    Hand-excluded 101+ homes take all-cause knocks at 16.1 per 100 home-years vs 10.6 for
    same-age homes without; age/state/vintage-standardized 1.59x (CI 1.38-1.83). Removing
    roof-reason knocks barely moves it (1.49x): the exclusion marks generally distrusted
