@@ -2,7 +2,11 @@
 
 Job 1 of the dwelling alert project: where should the automatic roof surfacing exclusion's score bar sit? **`SCOPE.md` is the document to read (and share)**; the presentable version is the shared page: https://claude.ai/code/artifact/f04c8819-6ab0-4912-86c3-4f3328acadb0. This folder also carries the extract SQL, the verification queries behind every headline number (`sql/probes_20260820.sql`), and a runnable sweep tool.
 
+> **Codex review 2026-09-23:** WITHDRAWN. The probes do not emit every headline; the review records aggregate live reruns and the remaining decision-time gaps. See REVIEW-2026-09-23.md #R2.
+
 > **Status 2026-08-21.** The results memo was corrected after a senior data-science pressure test. Five claims are withdrawn, including the "defensible band" framing, the whole-book harm-prevention shares, and the Phase 3 false-positive share and two arithmetic slips are fixed; `sql/03` should not be run for quotable output. Read the **Corrections** section at the end of `RESULTS-2026-08-20.md` before using any figure from this folder, and note that reproducibility is partial: the checked-in SQL is age 80+ from April with no end date, while the memo's primary curve is 101+ over May 1 - Aug 15, and several tables live only in the agents' run logs.
+
+> **Codex review 2026-09-23:** CORRECTED. This is a first read; the August 25 memos and PRD add material evidence and unresolved branch-only dependencies. See REVIEW-2026-09-23.md #R1.
 
 ## Run it
 
@@ -18,9 +22,13 @@ python3 -m roof_dial example
 python3 -m roof_dial sweep bound_book.csv --months 4.5 -o curve.md
 python3 -m roof_dial overlay outcomes.csv --window 90 -o overlay.md
 python3 -m roof_dial disposition bound_book.csv outcomes.csv --bar 80
+
+> **Codex review 2026-09-23:** WITHDRAWN. This recipe omits bar83, mixes month bases, counts overlay event rows and still emits the withdrawn disposition class. See REVIEW-2026-09-23.md #R4.
 ```
 
 Every table prints its denominators (per 100 of WHAT, over WHAT window) and its unscored counts; nothing is dropped silently.
+
+> **Codex review 2026-09-23:** CORRECTED. Left-alone unscored counts are not printed, and empty segment rates currently display zero. See REVIEW-2026-09-23.md #T1.
 
 ## Tests
 
@@ -30,6 +38,8 @@ python3 -m unittest discover -s tests
 
 The 2026-08-20 probe numbers are pinned as tests: the banded example must reproduce the preview curve (36.1% capture at 91+, 58.8% at 81+, 74.5% at 71+, 82.3% at 61+) exactly. Added 8/21: the marginal step costs off the memo's own Phase 1 counts (0.85 onto 90, 1.52 onto 85, 2.41 onto 83, 2.52 onto 80) are pinned too, so the running average cannot be mistaken for the cost of moving the bar again.
 
+> **Codex review 2026-09-23:** CORRECTED. These tests check copied aggregate fixtures and arithmetic, not independent warehouse evidence or the full fine-bar curve. See REVIEW-2026-09-23.md #R5.
+
 ## Layout
 
 - `SCOPE.md` - the scope: question, verified data inventory, the four measurements, phases, decision framing
@@ -37,3 +47,5 @@ The 2026-08-20 probe numbers are pinned as tests: the banded example must reprod
 - `roof_dial/` - the sweep tool: `sweep.py` (the aperture curve), `overlay.py` (harm overlay + over-apply disposition), `report.py` (markdown tables), `__main__.py` (CLI)
 - `examples/bound_101plus_bands_20260820.csv` - real banded counts from the probe, so the demo runs with zero setup
 - `tests/` - the probe numbers, pinned
+
+> **Codex review 2026-09-23:** CORRECTED. The layout also includes PRD.md, BIND-RATE-2026-08-25.md, OVERAPPLY-COST-2026-08-25.md and NOC-RATES-2026-08-25.md; branch references remain separate. See REVIEW-2026-09-23.md #R1.

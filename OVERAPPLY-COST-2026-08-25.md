@@ -2,16 +2,39 @@
 
 *Run 2026-08-25 by a three-analyst workflow, each adversarially verified by an independent recomputation agent. Verdict: **CONFIRMED** - every load-bearing number reproduced from independently written SQL. Metabase db 235, read-only.*
 
+> **Codex review 2026-09-23:** CANNOT VERIFY. Independent verifier SQL and dated outputs are not committed; this review checks printed arithmetic and query design. See REVIEW-2026-09-23.md #B1.
+
+
 **Headline.** Over-applying the roof exclusion by machine has, so far, cost almost nothing we can measure: the live auto-exclusion lane binds at the same rate as the old hand lane (11.3% vs 10.8%), only 9 of 436 auto-applied exclusions have been pushed back off after bind (~2%, about twice the hand rate), and the real growing cost is a compliance lane of ~65-70 bound policies a month carrying an exclusion no underwriter ever saw - while the benefit of each extra marginal exclusion still cannot be measured (24 of the 25 excluded-book claims predate the roof score).
+
+> **Codex review 2026-09-23:** WITHDRAWN. These all-age observational comparisons do not show that bind harm is negligible or that a wider 101+ bar has small costs. See REVIEW-2026-09-23.md #O14.
+
 
 ## Key numbers
 
 - **Bind rate, auto-applied exclusion vs old hand lane**: 11.30% vs 10.75% (no difference, p=0.47; +2.4pp after state-mix placebo) *(base: 386/3,415 vs 376/3,499 quotes where the model said exclude; all NB quotes created Apr 1-Jul 31 2026, bound or not)*
+
+> **Codex review 2026-09-23:** CORRECTED. This is an all-age flag-on versus flag-off exclude-decision comparison; only 521 of 3,499 flag-off quotes carry a hand exclusion, and 171 of 3,415 flag-on quotes carry no exclusion. See REVIEW-2026-09-23.md #O1.
+
 - **Worst-case bind drag (score-matched within flag-on states)**: -1.4pp (10.97% vs 12.34%, p=0.07); shrinks to -0.3pp at scores 95+ *(base: 294/2,680 auto-excluded vs 721/5,845 same-score (85+) not excluded, creations Apr 15-Jul 31)*
+
+> **Codex review 2026-09-23:** WITHDRAWN. The all-age score 85+ difference is a selected point estimate, not a worst-case bound; the reported 85-89 band gap is -2.76 pp. See REVIEW-2026-09-23.md #O4.
+
 - **Post-bind removals of auto-applied exclusions (was n=1)**: 9 of 436 = 2.06% [1.09-3.88]; all stayed off; median 30 days to removal *(base: auto-applied bind-time exclusions on Apr 1+ binds, removal = later issued endorsement without the exclusion, as of Aug 25)*
+
+> **Codex review 2026-09-23:** CORRECTED. For the stated all-age Aug 25 census, the nine auto removals have latest endorsement state off; Q6 does not test whether coverage was ever re-added between removal and that latest state. See REVIEW-2026-09-23.md #O5.
+
+> **Codex review 2026-09-23:** CORRECTED. The Sep 23 all-age endorsement history check finds 12/586 auto and 36/3,358 hand removals; among the 29 hand removals visible before August 26, one was later re-added. All nine auto removals visible before that cutoff remained off. See REVIEW-2026-09-23.md #O5.
+
 - **Auto vs hand pushback, runway-fair**: 2.36% vs 0.93% (~2.5x, Fisher p=0.051) *(base: 6/254 vs 18/1,931; binds through Jul 10, removal within 45 days)*
 - **Never-seen compliance lane, current actual**: ~65-70 bound policies/mo (69 in Jul = 66% of all auto-exclusion binds) *(base: bound quotes with auto-applied exclusion, no substantive gating alert AND no referral note; strict-count by bind month)*
+
+> **Codex review 2026-09-23:** CORRECTED. This is an all-age quote proxy by creation month, not proof no underwriter saw the roof or a count by bind month. See REVIEW-2026-09-23.md #O9.
+
 - **Marginal-benefit split feasibility**: INFEASIBLE: 24 of 25 excluded-book wind/hail claims are on pre-score-era binds (1 scored, paid $399) *(base: 25 first-term wind/hail claims on the 2024-01 to 2026-06 excluded bound book)*
+
+> **Codex review 2026-09-23:** CORRECTED. Q9 shows 24 unscored claims among 25 all-age excluded-book wind/hail claims in its stated window; score-null alone does not establish pre-score bind date. See REVIEW-2026-09-23.md #O11.
+
 
 # What over-applying the roof exclusion actually costs: the ledger as of Aug 25
 
@@ -19,7 +42,13 @@
 
 ## 1. Bind rate: the live experiment says the exclusion does not scare quotes away
 
+> **Codex review 2026-09-23:** WITHDRAWN. Flag assignment and pooled observational bind rates do not constitute a causal experiment. See REVIEW-2026-09-23.md #O1.
+
+
 Population: every new-business quote created Apr 1 - Jul 31, 2026, bound or not (this fixes the survivor-bias defect from the earlier curve). "Model said exclude" quotes split by whether the automation flag was on (exclusion applied instantly, no underwriter) or off (the old lane: referral, sometimes a hand-applied exclusion - 521 of the 3,499 flag-off quotes got one).
+
+> **Codex review 2026-09-23:** CORRECTED. The comparison is intent-to-treat by current signature, not actual auto versus hand application; all ages are included. See REVIEW-2026-09-23.md #O1.
+
 
 | group | quotes | bound | bind rate (Wilson 95%) |
 |---|---|---|---|
@@ -28,14 +57,35 @@ Population: every new-business quote created Apr 1 - Jul 31, 2026, bound or not 
 | clean "pass" quotes, flag-on states | 97,804 | 15,481 | 15.83% |
 | clean "pass" quotes, flag-off states | 160,199 | 28,261 | 17.64% |
 
+> **Codex review 2026-09-23:** CORRECTED. The pass rows classify quotes by their flag, which changes within a state during rollout; these are not fixed groups of states. See REVIEW-2026-09-23.md #O3.
+
+
 - The two exclude lanes are statistically identical (Fisher p = 0.47).
+
+> **Codex review 2026-09-23:** WITHDRAWN. A Fisher p-value of 0.466 on 386/3,415 versus 376/3,499 all-age Apr-Jul quotes does not establish equivalence. See REVIEW-2026-09-23.md #O1.
+
 - The flag-on states bind ~1.8pp LOWER on clean quotes (that's just which states they are), so after netting that out, the auto-applied lane actually looks **+2.4pp better** than expected. Stable month by month (May +0.4, Jun +2.4, Jul +2.2).
+
+> **Codex review 2026-09-23:** WITHDRAWN. The positive adjusted sign comes entirely from the pass comparator trend; within-month exclude gaps are negative and parallel trends were not tested. See REVIEW-2026-09-23.md #O2.
+
 - Plain reading: slapping the exclusion on instantly costs no binds versus the old lane - plausibly because the old lane's referral locks the quote, which is its own bind killer.
+
+> **Codex review 2026-09-23:** WITHDRAWN. No causal bind-cost estimate follows from this selected, changing population. See REVIEW-2026-09-23.md #O1.
+
 - Second view, worst case: within flag-on states, comparing auto-excluded quotes to quotes with the SAME roof score (85+) the model chose not to exclude: 10.97% vs 12.34% bind (-1.4pp, p = 0.07), and the gap shrinks to -0.3pp at scores 95+. Those "left alone at the same score" quotes were spared for reasons we can't see (imagery confidence), so this is a bound, not a clean match.
+
+> **Codex review 2026-09-23:** WITHDRAWN. Non-score inputs were not audited, and this comparison cannot be called a worst-case bound. See REVIEW-2026-09-23.md #O4.
+
 
 **So the bind cost per over-applied exclusion sits between roughly zero (vs the referral counterfactual) and about 1.4pp of bind rate (~11% relative) at the very worst.** Nothing resembling the referral lock's damage.
 
+> **Codex review 2026-09-23:** WITHDRAWN. For all-age flag-on score 85+ quotes created Apr 15-Jul 31, the printed gap has an approximate 95% interval from -2.82 to +0.09 pp; no causal bound follows. See REVIEW-2026-09-23.md #O4.
+
+
 ## 2. Post-bind pushback: n=1 is now n=9; about 2%, roughly twice the hand rate, 98% stick
+
+> **Codex review 2026-09-23:** CORRECTED. The all-age Aug 25 census says 427 of 436 auto-excluded dwellings had no recorded later issued-endorsement removal yet; follow-up is unequal. See REVIEW-2026-09-23.md #O8.
+
 
 Re-pulled fresh from the live table (not the frozen 8/16 snapshot): an exclusion counts as "removed" when the same dwelling's policy later issues an endorsement without it.
 
@@ -45,10 +95,19 @@ Re-pulled fresh from the live table (not the frozen 8/16 snapshot): an exclusion
 | underwriter (hand) | 2,774 | 29 | 1.05% (0.73-1.50) |
 
 - Runway-fair version (binds through Jul 10 only, removal within a fixed 45 days): auto 6/254 = 2.36% vs hand 18/1,931 = 0.93%. Fisher p = 0.051 - auto exclusions get pushed back **about 2-2.5x more often**, right at the edge of significance.
+
+> **Codex review 2026-09-23:** CONFIRMED. Arithmetic only: the fixed 45-day all-age cut is 6/254 versus 18/1,931, ratio 2.534 and Fisher p=0.05145; it must not be paired with the raw 9/436 rate. See REVIEW-2026-09-23.md #O6.
+
 - The 9: median 30 days from bind to removal (range 3-93); every one stayed off afterward; states NJ/CA/TN/PA/AZ; scores 84-99 at bind; **home ages 31 to 137** - the automation fires on score at any age, not just old homes.
+
+> **Codex review 2026-09-23:** CORRECTED. Median 30 days follows from the nine printed delays; latest off is not the same as never re-added, and states are not in the committed output comment. See REVIEW-2026-09-23.md #O5.
+
 - What this can't see: who removed them (needs the audit-log join), removals done through anything other than an issued endorsement, and the Jul/Aug binds whose runway is mostly still ahead. Treat 2% as an early floor with a wide band, not a settled rate.
 
 ## 3. The never-seen compliance lane is already ~65-70 bound policies a month - bigger than the prior estimate, because it was measuring a different thing
+
+> **Codex review 2026-09-23:** CORRECTED. All-age no-alert/no-note quotes are approximately flat across June, July and the August pace, and the cohort month is creation month. See REVIEW-2026-09-23.md #O9.
+
 
 Bound quotes carrying an auto-applied exclusion where no substantive alert ever required an underwriter to look AND no referral note of any kind exists on the quote:
 
@@ -60,27 +119,54 @@ Bound quotes carrying an auto-applied exclusion where no substantive alert ever 
 | Jul | 105 | **69** (65.7% of the lane, CI 56-74%) |
 | Aug 1-25 | 67 | 54 (≈67/mo pace) |
 
+> **Codex review 2026-09-23:** CORRECTED. This table is quote grain and creation month; the no-alert/no-note criterion is a proxy, not an observed absence of roof review. See REVIEW-2026-09-23.md #O9.
+
+
 - **About two-thirds of every auto-exclusion bind is a policy no underwriter ever saw**, and post-expansion the lane runs ~65-70/mo.
+
+> **Codex review 2026-09-23:** WITHDRAWN. No substantive alert and no note do not establish that no underwriter saw the policy. See REVIEW-2026-09-23.md #O9.
+
 - The prior "~34/mo" was the *additional* never-seen volume a hypothetical bar-80 rule on 101+ homes would create. Today's actual baseline (all ages, current tight setting) is already ~2x that. A wider bar stacks on top of this number - this is the disclosure/filings watch-item, and it grows mechanically with every notch of the dial.
+
+> **Codex review 2026-09-23:** WITHDRAWN. All-age current-rule quotes and a 101+ incremental dwelling scenario use different bases; PRD pass-through changes which catches also avoid review. See REVIEW-2026-09-23.md #O10.
+
 
 ## 4. Benefit on marginal roofs: cannot be measured yet - and here is exactly why
 
 The loss join found ~$52 of avoided paid loss per excluded home-year on hand-picked roofs and forbade multiplying it by a wider-bar catch count. Feasibility check on splitting the excluded book's 25 wind/hail claims by roof score band: **24 of the 25 sit on binds from before April 2026, when the score didn't exist. Exactly 1 claim has a bind-time score** (80-89 band, paid $399). No split is possible; not forced. The scored excluded book only started binding in April 2026 and its claims haven't arrived yet - this becomes measurable roughly next spring.
 
+> **Codex review 2026-09-23:** CORRECTED. Q9 separates scored from unscored claims, not pre-April from later binds; March shadow scoring also predates April. See REVIEW-2026-09-23.md #O11.
+
+
 ## 5. The ledger: what one over-applied exclusion costs / saves
 
 **Measured today (per the live automation, the closest thing to over-application in production):**
 - Bind loss: **none detectable** vs the hand lane; worst-case bound -1.4pp absolute from the score-matched view.
+
+> **Codex review 2026-09-23:** WITHDRAWN. The observed all-age point estimate is not a worst-case bound for a wider 101+ rule. See REVIEW-2026-09-23.md #O4.
+
 - Pushback: **~2% get removed post-bind** (~2-2.5x the hand rate, p=0.051); ~98% stick; at current volume that is ~2 removals a month.
+
+> **Codex review 2026-09-23:** CORRECTED. Raw all-age removal ratio is 1.975 (9/436 versus 29/2,774, Fisher p=0.0898); the 2.534 ratio belongs to the separate fixed 45-day cut. See REVIEW-2026-09-23.md #O5.
+
 - Compliance exposure: **~65-70 never-reviewed exclusion binds/mo already**; every widening adds to it (prior sizing: ~+34/mo more at bar 80 on 101+).
+
+> **Codex review 2026-09-23:** WITHDRAWN. The baseline and incremental projection cannot be added until age, grain, time and routing agree. See REVIEW-2026-09-23.md #O10.
+
 
 **Bounded, not measured:**
 - The saving per marginal exclusion is **at most $52/home-year** (that figure comes from the worst roofs underwriters chose by eye); the marginal roof at bar 80-85 almost certainly saves less, possibly much less. Unmeasurable until the scored excluded book accumulates claims.
+
+> **Codex review 2026-09-23:** WITHDRAWN. The hand-selected all-age loss contrast does not establish a ceiling on marginal machine-selected savings. See REVIEW-2026-09-23.md #O12.
+
 
 **Still unknown:**
 - Whether removals climb as the young auto book matures; complaints and agent abandonment before quote completion; override requests (not in these tables); the marginal avoided loss; and the exchange rate itself - how many unwanted exclusions one caught bad roof is worth. That last one is underwriting's call, and nothing here makes it.
 
 **One-line version for the bar decision:** the measurable costs of machine-applied exclusions are small and mostly compliance-shaped, not bind-shaped or pushback-shaped - but the benefit side of a wider bar is still a blank, so the case for widening rests on an unmeasured number, not on a scary cost.
+
+> **Codex review 2026-09-23:** WITHDRAWN. Bind effects, compliance volume under the proposed routing and marginal benefits remain unmeasured. See REVIEW-2026-09-23.md #O14.
+
 
 ## Caveats
 
@@ -89,8 +175,17 @@ The loss join found ~$52 of avoided paid loss per excluded home-year on hand-pic
 - Pushback n is small (9 auto removals; runway-fair Fisher p=0.051 - borderline). Jul/Aug binds have incomplete runway, removals via anything other than an issued endorsement row are invisible, and the remover (agent vs customer vs UW) is not attributed here.
 - 'Never seen by an underwriter' = no substantive alert with requires_uw_review AND no referral note since Mar 15. requires_uw_review means 'an alert required a look', not 'an underwriter reviewed this roof' (known defect 4), so the strict count is the defensible one and it is what is quoted.
 - The score-matched comparison group (same score, model chose not to exclude) is selected by the model's non-score inputs (imagery confidence), so its -1.4pp is a worst-case bound, not a causal estimate.
+
+> **Codex review 2026-09-23:** WITHDRAWN. The selection mechanism is not established and does not yield a causal bound. See REVIEW-2026-09-23.md #O4.
+
 - Bind rates are bound-as-of-Aug-25 for creations through Jul 31; the July cohort is mildly right-censored (affects both arms of each within-month comparison equally).
+
+> **Codex review 2026-09-23:** WITHDRAWN. Equal censoring effects across arms require evidence from lane-specific conversion delays. See REVIEW-2026-09-23.md #B20.
+
 - The quote-grain max() aggregates across dwellings within one quote (any-dwelling flags); this is not the withdrawn independent-max() version stitch - statuses are ~unique per quote (0.4% overlap, verified in Q2).
+
+> **Codex review 2026-09-23:** CORRECTED. Status overlap does not test flag/decision stitching; the verifier reports 3,414 of 3,415 signatures on the same row, but its SQL is absent. See REVIEW-2026-09-23.md #O13.
+
 - Term 4 stays open by design: only 1 of 25 excluded-book wind/hail claims has a bind-time roof score, so avoided-loss-by-marginality cannot be measured until the scored (Apr 2026+) excluded book accumulates claim runway, roughly spring 2027.
 - No exchange rate is proposed anywhere in this analysis - valuing one caught bad roof against one unwanted exclusion remains underwriting's decision.
 - All work was read-only SELECT queries against Metabase db 235; nothing was written, committed, or published.

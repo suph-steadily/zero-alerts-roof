@@ -1,0 +1,2275 @@
+{
+  "run_date": "2026-09-23",
+  "database": 235,
+  "only_select": true,
+  "final_queries_timezone": "America/Chicago",
+  "claims_data_through": "2026-08-31",
+  "original_query_reference": "origin/loss-join:sql/04_loss_join.sql:35",
+  "results": [
+    {
+      "name": "original_loss",
+      "status": "completed",
+      "row_count": 1,
+      "columns": [
+        "matched_dwelling_years",
+        "act_wind_hail_claims",
+        "exp_wind_hail_claims",
+        "act_wind_hail_paid",
+        "exp_wind_hail_paid",
+        "act_control_claims",
+        "exp_control_claims",
+        "act_control_paid",
+        "exp_control_paid"
+      ],
+      "rows": [
+        [
+          3905,
+          27,
+          34,
+          44337,
+          341887,
+          49,
+          52.8,
+          1148914,
+          926048
+        ]
+      ],
+      "started_at": "2026-09-23T17:14:31.254007234Z"
+    },
+    {
+      "name": "snapshot_1",
+      "status": "completed",
+      "row_count": 1,
+      "columns": [
+        "snapshot_rows",
+        "distinct_claims",
+        "unparseable_file_rows",
+        "missing_dwelling_rows",
+        "first_file_month",
+        "last_file_month",
+        "row_inflation_factor"
+      ],
+      "rows": [
+        [
+          94193,
+          7885,
+          0,
+          140,
+          "2022-02-01T00:00:00-06:00",
+          "2026-08-01T00:00:00-05:00",
+          11.94584654407102
+        ]
+      ],
+      "started_at": "2026-09-23T17:14:48.94571649Z"
+    },
+    {
+      "name": "snapshot_2",
+      "status": "completed",
+      "row_count": 1,
+      "columns": [
+        "claims",
+        "duplicate_latest_claims",
+        "conflicting_latest_claims"
+      ],
+      "rows": [
+        [
+          7885,
+          0,
+          0
+        ]
+      ],
+      "started_at": "2026-09-23T17:14:48.193385582Z"
+    },
+    {
+      "name": "snapshot_3",
+      "status": "completed",
+      "row_count": 33,
+      "columns": [
+        "peril",
+        "claims",
+        "paid",
+        "incurred",
+        "claim_share_pct"
+      ],
+      "rows": [
+        [
+          "Hail",
+          2126,
+          22850843.36076355,
+          24445769.909591675,
+          26.96258719086874
+        ],
+        [
+          "Water Damage",
+          2081,
+          21204121.062288284,
+          23759412.7216053,
+          26.391883322764745
+        ],
+        [
+          "Wind",
+          1506,
+          16525201.318740845,
+          18275528.074569702,
+          19.0995561192137
+        ],
+        [
+          "Fire",
+          309,
+          35943946.06134033,
+          49270651.50402832,
+          3.918833227647432
+        ],
+        [
+          "Vandalism",
+          248,
+          2566633.2044038773,
+          3098344.7464876175,
+          3.1452124286620164
+        ],
+        [
+          "Water Backup",
+          199,
+          997252.347869873,
+          1184687.5378417969,
+          2.5237793278376666
+        ],
+        [
+          "Other",
+          191,
+          932947.1273803711,
+          1242040.0786437988,
+          2.422320862396956
+        ],
+        [
+          "Sewer Backup",
+          150,
+          656865.1901550293,
+          769050.0599975586,
+          1.9023462270133165
+        ],
+        [
+          "Theft",
+          140,
+          515234.47324848175,
+          651814.1632204056,
+          1.7755231452124287
+        ],
+        [
+          "Injury",
+          130,
+          2367797.8289031982,
+          4143142.1111297607,
+          1.648700063411541
+        ],
+        [
+          "Freezing Water",
+          124,
+          2024238.1824188232,
+          2084529.3992156982,
+          1.5726062143310082
+        ],
+        [
+          "Fallen Tree",
+          122,
+          1351868.9803466797,
+          2191065.15234375,
+          1.5472415979708307
+        ],
+        [
+          "Weather",
+          101,
+          1279362.7893218994,
+          1292296.7580718994,
+          1.2809131261889664
+        ],
+        [
+          "Third-Party Damage",
+          77,
+          373610.2620973587,
+          562451.1198244095,
+          0.9765377298668357
+        ],
+        [
+          "Collision",
+          67,
+          823939.2872772217,
+          875443.142501831,
+          0.849714648065948
+        ],
+        [
+          "Slip / Fall",
+          47,
+          728583.529296875,
+          2892167.609375,
+          0.5960684844641725
+        ],
+        [
+          "Mold",
+          34,
+          145919.42166137695,
+          194765.3715209961,
+          0.43119847812301837
+        ],
+        [
+          "Lightning",
+          31,
+          390497.09899902344,
+          425653.50915527344,
+          0.39315155358275206
+        ],
+        [
+          "Dog Bite",
+          29,
+          158630.33935546875,
+          298982.83056640625,
+          0.3677869372225745
+        ],
+        [
+          "Falling Object",
+          29,
+          170986.6287841797,
+          181486.6287841797,
+          0.3677869372225745
+        ],
+        [
+          "Flood",
+          21,
+          14917.570037841797,
+          28556.320037841797,
+          0.2663284717818643
+        ],
+        [
+          "Weight of Ice and Snow",
+          21,
+          225499.0389099121,
+          237225.9480895996,
+          0.2663284717818643
+        ],
+        [
+          "Building Collapse",
+          16,
+          67253.23983764648,
+          83901.9899597168,
+          0.20291693088142043
+        ],
+        [
+          "Smoke",
+          14,
+          122059.67980957031,
+          142209.6796875,
+          0.17755231452124287
+        ],
+        [
+          "Ice Damage",
+          14,
+          114471.80288696289,
+          170795.6915588379,
+          0.17755231452124287
+        ],
+        [
+          "Power Surge",
+          13,
+          75202.53002929688,
+          75202.53002929688,
+          0.1648700063411541
+        ],
+        [
+          "Equipment Breakdown",
+          13,
+          3132.4500122070312,
+          10281.200012207031,
+          0.1648700063411541
+        ],
+        [
+          "Service Line",
+          12,
+          35745.189392089844,
+          49642.689392089844,
+          0.1521876981610653
+        ],
+        [
+          "Biohazard",
+          9,
+          223815.65185546875,
+          231125.65185546875,
+          0.11414077362079898
+        ],
+        [
+          "Earth Movement",
+          6,
+          10152.890014648438,
+          10152.890014648438,
+          0.07609384908053266
+        ],
+        [
+          "Broken Window",
+          3,
+          2883.56005859375,
+          2883.56005859375,
+          0.03804692454026633
+        ],
+        [
+          "Robbery",
+          1,
+          371,
+          371,
+          0.012682308180088777
+        ],
+        [
+          "Sinkhole",
+          1,
+          1095.199951171875,
+          1095.199951171875,
+          0.012682308180088777
+        ]
+      ],
+      "started_at": "2026-09-23T17:14:48.648788572Z"
+    },
+    {
+      "name": "schema_columns",
+      "status": "completed",
+      "row_count": 114,
+      "columns": [
+        "database",
+        "table",
+        "name",
+        "type"
+      ],
+      "rows": [
+        [
+          "dbt",
+          "claims_smga",
+          "claim_desc_of_loss",
+          "String"
+        ],
+        [
+          "dbt",
+          "claims_smga",
+          "claim_id",
+          "String"
+        ],
+        [
+          "dbt",
+          "claims_smga",
+          "claim_status",
+          "String"
+        ],
+        [
+          "dbt",
+          "claims_smga",
+          "claims_file",
+          "String"
+        ],
+        [
+          "dbt",
+          "claims_smga",
+          "claims_management_company",
+          "String"
+        ],
+        [
+          "dbt",
+          "claims_smga",
+          "coverage_denied",
+          "String"
+        ],
+        [
+          "dbt",
+          "claims_smga",
+          "expense_incurred",
+          "Float32"
+        ],
+        [
+          "dbt",
+          "claims_smga",
+          "expense_paid",
+          "Float32"
+        ],
+        [
+          "dbt",
+          "claims_smga",
+          "indemnity_incurred",
+          "Float32"
+        ],
+        [
+          "dbt",
+          "claims_smga",
+          "indemnity_paid",
+          "Float32"
+        ],
+        [
+          "dbt",
+          "claims_smga",
+          "legal_paid",
+          "Float32"
+        ],
+        [
+          "dbt",
+          "claims_smga",
+          "net_incurred",
+          "Float32"
+        ],
+        [
+          "dbt",
+          "claims_smga",
+          "policy_expiration",
+          "Nullable(Date)"
+        ],
+        [
+          "dbt",
+          "claims_smga",
+          "policy_inception",
+          "Nullable(Date)"
+        ],
+        [
+          "dbt",
+          "claims_smga",
+          "policy_number",
+          "String"
+        ],
+        [
+          "dbt",
+          "claims_smga",
+          "policy_year",
+          "Int32"
+        ],
+        [
+          "dbt",
+          "claims_smga",
+          "secondary_claim_id",
+          "Float32"
+        ],
+        [
+          "dbt",
+          "claims_smga",
+          "total_incurred",
+          "Float64"
+        ],
+        [
+          "dbt",
+          "claims_smga",
+          "total_paid",
+          "Float32"
+        ],
+        [
+          "dbt",
+          "claims_smga",
+          "total_paid_itd",
+          "Float32"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "_sdc_source_file",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "cancellation_name",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "cancellation_reason",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "coverage_version",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "form_version",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "form_version_category",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_applied_coverage_tier",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_cancel_rewrite_policy_locator",
+          "Int64"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_carrier_weights_version",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_cov_medical_payments_limit_deductible",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_created_timestamp",
+          "Nullable(DateTime)"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_days_bound_in_advance_of_effective_date",
+          "Int64"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_ff_attestations_version",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_ff_automated_excess_water_claims_enabled",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_ff_dwelling_policy_fee_enabled",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_ff_optional_coverages_disallow_zero_limits",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_ff_pref_part_disc_discount_version",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_is_mid_term_cancel_rewrite",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_major_claims_three_years",
+          "Int64"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_multi_location_discount_from_existing_policy",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_new_rate_old_policy_override",
+          "Float32"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_old_rate_old_policy_override",
+          "Float32"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_old_rates_new_version_override",
+          "Float32"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_old_rates_old_version_override",
+          "Float32"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_policy_type",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_policyholder_uw_signature_requirement",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_previous_policy_id",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_claims_count",
+          "Int64"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_dwelling_claims_group",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_general_neglect_model_version",
+          "Nullable(String)"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_geo_deductible_zone",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_steadily_flashpoint_score_model_version",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_steadily_replacement_cost_model_version",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_steadily_risk_score_model_version",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_steadily_roof_condition_score_model_version",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_tiv_aggregation_factor_risk_adjustment",
+          "Nullable(Float64)"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_tiv_aggregation_factor_version",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_value_360_condo_valuation_version",
+          "Int64"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_value_360_valuation_version",
+          "Int64"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_waive_mine_subsidence_coverage",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_wind_coverage_exclusion_zone",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_windstorm_or_hail_coverage",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_windstorm_or_hail_deductible_zone",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_wlc_implementation_version",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_wlc_moodys_model_version",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_yard_debris_coverage_sqft",
+          "Float32"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_zhail_claim_frequency",
+          "Float32"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_prop_zwind_claim_frequency",
+          "Float32"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_self_reported_major_claims_three_years",
+          "Int64"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "pol_total_water_damage_related_claims",
+          "Int64"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "policy_additional_named_insured",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "policy_effective_end_timestamp",
+          "Nullable(DateTime)"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "policy_effective_timestamp",
+          "Nullable(DateTime)"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "policy_expiration_timestamp",
+          "Nullable(DateTime)"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "policy_id",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "policy_issued_timestamp",
+          "Nullable(DateTime)"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "policy_number",
+          "Int64"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "policy_original_created_timestamp",
+          "DateTime"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "policy_producer_email",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "policy_producer_preferred_group",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "policy_producer_preferred_group_parent_account_id",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "policy_producer_profile_id",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "policy_producer_type",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "product_version",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_all_other_perils_deductible",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_all_other_perils_deductible_selected",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_bed_bug_aggregate_limit_per_policy",
+          "Int64"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_equipment_breakdown_deductible",
+          "Int64"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_hoa_fines_aggregate_limit_per_policy",
+          "Int64"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_hurricane_deductible",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_hurricane_deductible_selected",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_limited_hidden_water_deductible",
+          "Int64"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_limited_theft_deductible",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_mine_subsidence_dwelling_deductible",
+          "Int64"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_off_ple_selection_factor",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_ordinance_or_law_dwelling_coverage_pct",
+          "Int64"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_ordinance_or_law_selection_factor",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_service_line_deductible",
+          "Int64"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_theft_deductible",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_vandalism_or_mischief_selection_factor",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_water_back_up_deductible",
+          "Int64"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_water_damage_limitation_deductible",
+          "Int64"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_water_damage_limitation_selection_factor",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_water_damage_perils_deductible",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_wind_and_hail_deductible",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_wind_and_hail_deductible_selected",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "quote_effective_timestamp",
+          "Nullable(DateTime)"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "quote_issued_timestamp",
+          "Nullable(DateTime64(6))"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "quote_version",
+          "Int64"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "rating_nano_coverages",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "tax_version",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "underwriting_cancellation_reason",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "underwriting_hard_soft_cancellation",
+          "String"
+        ],
+        [
+          "dbt",
+          "ipod_standard_mga_raw_policy_info",
+          "user_visible_policy_number",
+          "String"
+        ]
+      ],
+      "started_at": "2026-09-23T17:14:49.242269001Z"
+    },
+    {
+      "name": "cohort_1",
+      "status": "completed",
+      "row_count": 1,
+      "columns": [
+        "homes",
+        "rows_",
+        "duplicated_home_keys",
+        "conflicting_home_keys",
+        "multi_issued_quote_homes"
+      ],
+      "rows": [
+        [
+          257540,
+          257540,
+          0,
+          0,
+          0
+        ]
+      ],
+      "started_at": "2026-09-23T17:14:49.49178825Z"
+    },
+    {
+      "name": "cohort_2",
+      "status": "completed",
+      "row_count": 2,
+      "columns": [
+        "excluded",
+        "homes",
+        "policies",
+        "texas_homes",
+        "texas_share_pct",
+        "inferred_auto_homes",
+        "inferred_auto_policies",
+        "age101_at_issue_homes",
+        "issue_differs_from_creation_homes",
+        "creation_to_issue_days"
+      ],
+      "rows": [
+        [
+          0,
+          250483,
+          213816,
+          31475,
+          12.565723023119334,
+          0,
+          0,
+          23323,
+          181700,
+          "[4, 27]"
+        ],
+        [
+          1,
+          7057,
+          6039,
+          306,
+          4.336120164375797,
+          249,
+          221,
+          2963,
+          5403,
+          "[5, 33]"
+        ]
+      ],
+      "started_at": "2026-09-23T17:14:47.233353967Z"
+    },
+    {
+      "name": "exposure_multiplication",
+      "status": "completed",
+      "row_count": 2,
+      "columns": [
+        "rse",
+        "homes",
+        "multi_claim_homes",
+        "correct_separate_dy",
+        "after_claim_join_dy",
+        "excess_dy",
+        "inflation_pct"
+      ],
+      "rows": [
+        [
+          0,
+          250483,
+          214,
+          186175.26351813826,
+          186395.2306639288,
+          219.9671457905497,
+          0.11815057577138077
+        ],
+        [
+          1,
+          7057,
+          6,
+          3901.2320328542096,
+          3905.0047912388773,
+          3.772758384667668,
+          0.09670684421985154
+        ]
+      ],
+      "started_at": "2026-09-23T17:15:43.877866977Z"
+    },
+    {
+      "name": "date_metadata",
+      "status": "completed",
+      "row_count": 9,
+      "columns": [
+        "table",
+        "name",
+        "type",
+        "comment"
+      ],
+      "rows": [
+        [
+          "claims_smga",
+          "claims_file",
+          "String",
+          "Monthly claims bordereau file label in `M-YYYY` form, e.g. `9-2025`. Filter to one value for a point-in-time snapshot.\n"
+        ],
+        [
+          "claims_smga",
+          "policy_expiration",
+          "Nullable(Date)",
+          ""
+        ],
+        [
+          "claims_smga",
+          "policy_inception",
+          "Nullable(Date)",
+          ""
+        ],
+        [
+          "ipod_standard_mga_raw_policy_info",
+          "policy_effective_end_timestamp",
+          "Nullable(DateTime)",
+          "`Nullable(DateTime)`; non-NULL on a minority of rows (probed). For a term's actual end use `coalesce(policy_effective_end_timestamp, policy_expiration_timestamp)` \u2014 the term-end definition the `dbt_mga` marts carry.\n"
+        ],
+        [
+          "ipod_standard_mga_raw_policy_info",
+          "policy_effective_timestamp",
+          "Nullable(DateTime)",
+          "Effective start (`Nullable(DateTime)`) of the policy term this quote belongs to; pairs with `policy_expiration_timestamp` (term end = `coalesce(policy_effective_end_timestamp, policy_expiration_timestamp)`). Use it for exposure / in-force windows \u2014 not for when the policy was sold (that is `policy_issued_timestamp`).\n"
+        ],
+        [
+          "ipod_standard_mga_raw_policy_info",
+          "prop_cov_dwelling_limit",
+          "Int64",
+          "Per-dwelling `dwelling` coverage \u2014 data schema LimitAndLossValuationOption (`limit`, `loss_valuation_option`) (ryerson coverage schema); maps to peril \"Dwelling\". This column is the Coverage A dwelling limit in whole dollars (`Int64`), typically in the hundreds of thousands (probed). Feeds the spine's `dwelling_tiv` together with private-structures, personal-property, ALC/FRV, and extended-replacement-cost limits.\n"
+        ],
+        [
+          "ipod_standard_mga_raw_policy_info",
+          "quote_effective_timestamp",
+          "Nullable(DateTime)",
+          "`Nullable(DateTime)` but never NULL in prod (probed). The derived `issued_count`/`quoted_count` sequencing uses it to date cancellations and reinstatements.\n"
+        ],
+        [
+          "ipod_standard_mga_raw_policy_info",
+          "quote_issued_timestamp",
+          "Nullable(DateTime64(6))",
+          "When this quote (version) was issued, `Nullable(DateTime64(6))`. NULL on every non-`Issued` row, so `isNotNull(quote_issued_timestamp)` is equivalent to `quote_status = 'Issued'`. Use it to time individual endorsements/renewals; use `policy_issued_timestamp` for when the policy itself was bound.\n"
+        ],
+        [
+          "ipod_standard_mga_raw_policy_info",
+          "quote_version",
+          "Int64",
+          "`Int64` revision counter within a `quote_id`, starting at `1` (heavily edited quotes run to hundreds). A `quote_id` can appear with more than one version, so current quote state = highest version: `ORDER BY quote_version DESC LIMIT 1 BY quote_id` \u2014 the latest-version state the `dbt_mga` marts reflect.\n"
+        ]
+      ],
+      "started_at": "2026-09-23T17:15:44.437211943Z"
+    },
+    {
+      "name": "file_month_census",
+      "status": "completed",
+      "row_count": 3,
+      "columns": [
+        "claims_file",
+        "snapshot_rows",
+        "claims",
+        "first_loss",
+        "last_loss"
+      ],
+      "rows": [
+        [
+          "8-2026",
+          7878,
+          7878,
+          "2021-12-10T00:00:00-06:00",
+          "2026-08-31T00:00:00-05:00"
+        ],
+        [
+          "7-2026",
+          7270,
+          7270,
+          "2021-12-10T00:00:00-06:00",
+          "2026-07-31T00:00:00-05:00"
+        ],
+        [
+          "6-2026",
+          6737,
+          6737,
+          "2021-12-10T00:00:00-06:00",
+          "2026-06-30T00:00:00-05:00"
+        ]
+      ],
+      "started_at": "2026-09-23T17:15:44.654520385Z"
+    },
+    {
+      "name": "date_differences",
+      "status": "completed",
+      "row_count": 2,
+      "columns": [
+        "quote_type",
+        "home_rows",
+        "missing_quote_effective",
+        "missing_policy_effective",
+        "quote_effective_differs_issue",
+        "policy_effective_differs_quote",
+        "effective_minus_issue_days"
+      ],
+      "rows": [
+        [
+          "NewBusiness",
+          257540,
+          0,
+          0,
+          182117,
+          0,
+          "[0, 2, 20]"
+        ],
+        [
+          "Cancellation",
+          96836,
+          0,
+          0,
+          65073,
+          46323,
+          "[-42, 0, 11]"
+        ]
+      ],
+      "started_at": "2026-09-23T17:15:44.946192663Z"
+    },
+    {
+      "name": "sign_test_corrected",
+      "status": "failed",
+      "row_count": 0,
+      "error": "UNKNOWN_IDENTIFIER: age_scope missing from a CTE projection; corrected.",
+      "columns": [],
+      "rows": [],
+      "started_at": "2026-09-23T17:16:57.164964656Z"
+    },
+    {
+      "name": "original_loss_july_files",
+      "status": "completed",
+      "row_count": 1,
+      "columns": [
+        "matched_dwelling_years",
+        "act_wind_hail_claims",
+        "exp_wind_hail_claims",
+        "act_wind_hail_paid",
+        "exp_wind_hail_paid",
+        "act_control_claims",
+        "exp_control_claims",
+        "act_control_paid",
+        "exp_control_paid"
+      ],
+      "rows": [
+        [
+          3905,
+          27,
+          31.4,
+          42437,
+          309722,
+          44,
+          51,
+          639788,
+          839374
+        ]
+      ],
+      "started_at": "2026-09-23T17:16:58.010565671Z"
+    },
+    {
+      "name": "exposure_corrected",
+      "status": "failed",
+      "row_count": 0,
+      "error": "ILLEGAL_AGGREGATION: aggregate alias reused inside capped-severity expression; corrected by qualifying source columns.",
+      "columns": [],
+      "rows": [],
+      "started_at": "2026-09-23T17:17:00.790969509Z"
+    },
+    {
+      "name": "severity_corrected",
+      "status": "completed",
+      "row_count": 8,
+      "columns": [
+        "age_scope",
+        "peril_group",
+        "rse",
+        "lane",
+        "claims",
+        "homes",
+        "claims_on_scored_homes",
+        "paid_quantiles",
+        "maximum_paid",
+        "mean_paid",
+        "incurred_quantiles",
+        "paid_below_1400",
+        "paid_at_least_50000",
+        "coverage_denied_true",
+        "unexpected_denial_value",
+        "ambiguous_claims"
+      ],
+      "rows": [
+        [
+          "101plus",
+          "other_perils",
+          0,
+          "none",
+          257,
+          241,
+          16,
+          "[364.5, 1430.81, 13099.09, 62647.66]",
+          780800,
+          30882.57421376269,
+          "[434.5, 5350.0, 15925.5, 81702.390625]",
+          128,
+          32,
+          30,
+          0,
+          0
+        ],
+        [
+          "101plus",
+          "other_perils",
+          1,
+          "inferred_hand",
+          24,
+          24,
+          9,
+          "[30.75, 378.35, 5214.5, 122307.93]",
+          199687,
+          22426.37806065877,
+          "[459.0, 5679.5, 57000.0, 250495.046875]",
+          17,
+          3,
+          1,
+          0,
+          0
+        ],
+        [
+          "101plus",
+          "wind_hail",
+          0,
+          "none",
+          143,
+          142,
+          7,
+          "[629.5, 6135.0, 15851.26, 25988.78]",
+          148383.73,
+          11387.566584873866,
+          "[750.0, 7748.43994140625, 16002.7001953125, 25988.779296875]",
+          51,
+          4,
+          4,
+          0,
+          0
+        ],
+        [
+          "101plus",
+          "wind_hail",
+          1,
+          "inferred_hand",
+          10,
+          10,
+          1,
+          "[365.75, 451.75, 655.98, 807.0]",
+          807,
+          432.0419982910156,
+          "[371.0, 563.1900024414062, 661.25, 9500.0]",
+          10,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          "all_ages",
+          "other_perils",
+          0,
+          "none",
+          2504,
+          2343,
+          153,
+          "[386.25, 3169.78, 13003.35, 37589.4]",
+          780800,
+          18418.87069752879,
+          "[550.0, 5539.5, 14878.1904296875, 45921.41015625]",
+          1105,
+          183,
+          209,
+          0,
+          0
+        ],
+        [
+          "all_ages",
+          "other_perils",
+          1,
+          "inferred_hand",
+          56,
+          51,
+          11,
+          "[30.75, 500.0, 7381.68, 33872.9]",
+          448688.66,
+          20542.770536695207,
+          "[451.0, 5679.5, 20029.5, 250495.046875]",
+          36,
+          4,
+          4,
+          0,
+          0
+        ],
+        [
+          "all_ages",
+          "wind_hail",
+          0,
+          "none",
+          1947,
+          1917,
+          59,
+          "[750.0, 7398.9, 14712.34, 23075.21]",
+          621406,
+          11131.547090872287,
+          "[1085.0, 8881.4404296875, 15224.8701171875, 23762.7109375]",
+          624,
+          34,
+          67,
+          0,
+          0
+        ],
+        [
+          "all_ages",
+          "wind_hail",
+          1,
+          "inferred_hand",
+          30,
+          29,
+          3,
+          "[365.75, 480.75, 750.0, 5538.83]",
+          14847.81,
+          1468.7803151448568,
+          "[444.5, 655.97998046875, 5235.2998046875, 12179.5]",
+          26,
+          0,
+          5,
+          0,
+          0
+        ]
+      ],
+      "started_at": "2026-09-23T17:17:01.819237342Z"
+    },
+    {
+      "name": "exposure_corrected",
+      "status": "failed",
+      "row_count": 0,
+      "error": "UNKNOWN_IDENTIFIER: age_scope missing from a CTE projection; corrected.",
+      "columns": [],
+      "rows": [],
+      "started_at": "2026-09-23T17:17:46.898137376Z"
+    },
+    {
+      "name": "sign_test_corrected",
+      "status": "completed",
+      "row_count": 4,
+      "columns": [
+        "age_scope",
+        "peril_group",
+        "excluded_claims",
+        "matched_claims",
+        "paid_below",
+        "paid_tied",
+        "paid_above",
+        "incurred_below",
+        "incurred_tied",
+        "incurred_above",
+        "ambiguous_claims"
+      ],
+      "rows": [
+        [
+          "101plus",
+          "other_perils",
+          24,
+          24,
+          15,
+          1,
+          8,
+          12,
+          0,
+          12,
+          0
+        ],
+        [
+          "101plus",
+          "wind_hail",
+          10,
+          10,
+          10,
+          0,
+          0,
+          10,
+          0,
+          0,
+          0
+        ],
+        [
+          "all_ages",
+          "other_perils",
+          56,
+          56,
+          38,
+          0,
+          18,
+          29,
+          1,
+          26,
+          0
+        ],
+        [
+          "all_ages",
+          "wind_hail",
+          30,
+          30,
+          26,
+          0,
+          4,
+          27,
+          0,
+          3,
+          0
+        ]
+      ],
+      "started_at": "2026-09-23T17:17:47.644499253Z"
+    },
+    {
+      "name": "exposure_corrected",
+      "status": "completed",
+      "row_count": 4,
+      "columns": [
+        "age_scope",
+        "peril_group",
+        "excluded_homes",
+        "excluded_home_years",
+        "matched_excluded_home_years",
+        "unmatched_excluded_home_years",
+        "comparator_home_years_in_matched_cells",
+        "actual_claims",
+        "expected_claims",
+        "actual_paid",
+        "expected_paid",
+        "actual_incurred",
+        "expected_incurred",
+        "actual_paid_capped_50k",
+        "expected_paid_capped_50k",
+        "actual_incurred_capped_50k",
+        "expected_incurred_capped_50k",
+        "ambiguous_claims",
+        "latest_claims_file_month",
+        "confirmed_claims_data_through"
+      ],
+      "rows": [
+        [
+          "101plus",
+          "other_perils",
+          2964,
+          1235.2060232717315,
+          1235.047227926078,
+          null,
+          12344.85968514716,
+          24,
+          25.32833536908061,
+          538233.0734558105,
+          588210.1455953636,
+          1616353.669921875,
+          981997.7714643569,
+          177468.19064331055,
+          239359.10664004763,
+          387613.169921875,
+          301669.8336664636,
+          0,
+          "2026-08-01T00:00:00-05:00",
+          "2026-08-31T00:00:00-05:00"
+        ],
+        [
+          "101plus",
+          "wind_hail",
+          2964,
+          1235.2060232717315,
+          1235.047227926078,
+          null,
+          12344.85968514716,
+          10,
+          11.100895440680528,
+          4320.419982910156,
+          112398.10724373828,
+          13820.419982910156,
+          131151.2878023353,
+          4320.419982910156,
+          105309.58532965013,
+          13820.419982910156,
+          123925.19796281692,
+          0,
+          "2026-08-01T00:00:00-05:00",
+          "2026-08-31T00:00:00-05:00"
+        ],
+        [
+          "all_ages",
+          "other_perils",
+          7057,
+          3239.9616700889806,
+          3239.9616700889806,
+          null,
+          153632.13689253936,
+          56,
+          56.5278294808875,
+          1150395.1500549316,
+          914341.823268875,
+          4145995.535095215,
+          1433474.84196111,
+          390941.61099243164,
+          528492.2142826461,
+          744626.4413452148,
+          670426.6129405384,
+          0,
+          "2026-08-01T00:00:00-05:00",
+          "2026-08-31T00:00:00-05:00"
+        ],
+        [
+          "all_ages",
+          "wind_hail",
+          7057,
+          3239.9616700889806,
+          3239.9616700889806,
+          null,
+          153632.13689253936,
+          30,
+          33.29032483805431,
+          44063.4094543457,
+          320332.6615939553,
+          91733.9094543457,
+          365556.9075500177,
+          44063.4094543457,
+          288287.34065814456,
+          91733.9094543457,
+          333356.0414028758,
+          0,
+          "2026-08-01T00:00:00-05:00",
+          "2026-08-31T00:00:00-05:00"
+        ]
+      ],
+      "started_at": "2026-09-23T17:18:24.72448933Z"
+    },
+    {
+      "name": "exposure_final",
+      "status": "completed",
+      "row_count": 4,
+      "columns": [
+        "age_scope",
+        "peril_group",
+        "excluded_homes",
+        "excluded_home_years",
+        "matched_excluded_home_years",
+        "unmatched_excluded_home_years",
+        "comparator_home_years_in_matched_cells",
+        "actual_claims",
+        "expected_claims",
+        "actual_paid",
+        "expected_paid",
+        "actual_incurred",
+        "expected_incurred",
+        "actual_paid_capped_50k",
+        "expected_paid_capped_50k",
+        "actual_incurred_capped_50k",
+        "expected_incurred_capped_50k",
+        "ambiguous_claims",
+        "latest_claims_file_month",
+        "confirmed_claims_data_through"
+      ],
+      "rows": [
+        [
+          "101plus",
+          "other_perils",
+          2964,
+          1238.2149212867898,
+          1237.9876796714577,
+          0.2272416153319644,
+          12360.427104722792,
+          24,
+          24.996384252557025,
+          538233.0734558105,
+          587784.3954895816,
+          1616353.669921875,
+          977616.6742272071,
+          177468.19064331055,
+          239936.02686890826,
+          387613.169921875,
+          300752.96268463315,
+          0,
+          "2026-08-01T00:00:00-05:00",
+          "2026-08-31T00:00:00-05:00"
+        ],
+        [
+          "101plus",
+          "wind_hail",
+          2964,
+          1238.2149212867898,
+          1237.9876796714577,
+          0.2272416153319644,
+          12360.427104722792,
+          10,
+          11.104882994260675,
+          4320.419982910156,
+          112330.40204637106,
+          13820.419982910156,
+          131134.27233224182,
+          4320.419982910156,
+          105349.12233360711,
+          13820.419982910156,
+          124015.42469404764,
+          0,
+          "2026-08-01T00:00:00-05:00",
+          "2026-08-31T00:00:00-05:00"
+        ],
+        [
+          "all_ages",
+          "other_perils",
+          7057,
+          3244.991101984942,
+          3244.991101984942,
+          0,
+          153689.25941136212,
+          56,
+          56.27892539157323,
+          1150395.1500549316,
+          915494.9278339549,
+          4145995.535095215,
+          1427093.8645045443,
+          390941.61099243164,
+          530053.011337768,
+          744626.4413452148,
+          669098.4418158884,
+          0,
+          "2026-08-01T00:00:00-05:00",
+          "2026-08-31T00:00:00-05:00"
+        ],
+        [
+          "all_ages",
+          "wind_hail",
+          7057,
+          3244.991101984942,
+          3244.991101984942,
+          0,
+          153689.25941136212,
+          30,
+          33.360658429969135,
+          44063.4094543457,
+          321010.42689215305,
+          91733.9094543457,
+          366205.54477380554,
+          44063.4094543457,
+          289031.7897491652,
+          91733.9094543457,
+          334071.3624194865,
+          0,
+          "2026-08-01T00:00:00-05:00",
+          "2026-08-31T00:00:00-05:00"
+        ]
+      ],
+      "started_at": "2026-09-23T17:19:40.331673458Z"
+    },
+    {
+      "name": "severity_final",
+      "status": "completed",
+      "row_count": 8,
+      "columns": [
+        "age_scope",
+        "peril_group",
+        "rse",
+        "lane",
+        "claims",
+        "homes",
+        "claims_on_scored_homes",
+        "paid_quantiles",
+        "maximum_paid",
+        "mean_paid",
+        "incurred_quantiles",
+        "paid_below_1400",
+        "paid_at_least_50000",
+        "coverage_denied_true",
+        "unexpected_denial_value",
+        "ambiguous_claims"
+      ],
+      "rows": [
+        [
+          "101plus",
+          "other_perils",
+          0,
+          "none",
+          257,
+          241,
+          16,
+          "[364.5, 1430.81, 13099.09, 62647.66]",
+          780800,
+          30882.57421376269,
+          "[434.5, 5350.0, 15925.5, 81702.390625]",
+          128,
+          32,
+          30,
+          0,
+          0
+        ],
+        [
+          "101plus",
+          "other_perils",
+          1,
+          "inferred_hand",
+          24,
+          24,
+          9,
+          "[30.75, 378.35, 5214.5, 122307.93]",
+          199687,
+          22426.37806065877,
+          "[459.0, 5679.5, 57000.0, 250495.046875]",
+          17,
+          3,
+          1,
+          0,
+          0
+        ],
+        [
+          "101plus",
+          "wind_hail",
+          0,
+          "none",
+          143,
+          142,
+          7,
+          "[629.5, 6135.0, 15851.26, 25988.78]",
+          148383.73,
+          11387.566584873866,
+          "[750.0, 7748.43994140625, 16002.7001953125, 25988.779296875]",
+          51,
+          4,
+          4,
+          0,
+          0
+        ],
+        [
+          "101plus",
+          "wind_hail",
+          1,
+          "inferred_hand",
+          10,
+          10,
+          1,
+          "[365.75, 451.75, 655.98, 807.0]",
+          807,
+          432.0419982910156,
+          "[371.0, 563.1900024414062, 661.25, 9500.0]",
+          10,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          "all_ages",
+          "other_perils",
+          0,
+          "none",
+          2503,
+          2342,
+          153,
+          "[386.25, 3169.78, 13003.35, 37589.4]",
+          780800,
+          18426.21713008873,
+          "[550.0, 5539.5, 14878.1904296875, 45921.41015625]",
+          1104,
+          183,
+          209,
+          0,
+          0
+        ],
+        [
+          "all_ages",
+          "other_perils",
+          1,
+          "inferred_hand",
+          56,
+          51,
+          11,
+          "[30.75, 500.0, 7381.68, 33872.9]",
+          448688.66,
+          20542.770536695207,
+          "[451.0, 5679.5, 20029.5, 250495.046875]",
+          36,
+          4,
+          4,
+          0,
+          0
+        ],
+        [
+          "all_ages",
+          "wind_hail",
+          0,
+          "none",
+          1947,
+          1917,
+          59,
+          "[750.0, 7398.9, 14712.34, 23075.21]",
+          621406,
+          11131.547090872287,
+          "[1085.0, 8881.4404296875, 15224.8701171875, 23762.7109375]",
+          624,
+          34,
+          67,
+          0,
+          0
+        ],
+        [
+          "all_ages",
+          "wind_hail",
+          1,
+          "inferred_hand",
+          30,
+          29,
+          3,
+          "[365.75, 480.75, 750.0, 5538.83]",
+          14847.81,
+          1468.7803151448568,
+          "[444.5, 655.97998046875, 5235.2998046875, 12179.5]",
+          26,
+          0,
+          5,
+          0,
+          0
+        ]
+      ],
+      "started_at": "2026-09-23T17:19:51.219430961Z"
+    },
+    {
+      "name": "cohort_1_final",
+      "status": "completed",
+      "row_count": 1,
+      "columns": [
+        "homes",
+        "rows_",
+        "duplicated_home_keys",
+        "conflicting_home_keys",
+        "multi_issued_quote_homes"
+      ],
+      "rows": [
+        [
+          257540,
+          257540,
+          0,
+          0,
+          0
+        ]
+      ],
+      "started_at": "2026-09-23T17:19:57.210856855Z"
+    },
+    {
+      "name": "sign_test_final",
+      "status": "completed",
+      "row_count": 4,
+      "columns": [
+        "age_scope",
+        "peril_group",
+        "excluded_claims",
+        "matched_claims",
+        "paid_below",
+        "paid_tied",
+        "paid_above",
+        "incurred_below",
+        "incurred_tied",
+        "incurred_above",
+        "ambiguous_claims"
+      ],
+      "rows": [
+        [
+          "101plus",
+          "other_perils",
+          24,
+          24,
+          15,
+          1,
+          8,
+          12,
+          0,
+          12,
+          0
+        ],
+        [
+          "101plus",
+          "wind_hail",
+          10,
+          10,
+          10,
+          0,
+          0,
+          10,
+          0,
+          0,
+          0
+        ],
+        [
+          "all_ages",
+          "other_perils",
+          56,
+          56,
+          38,
+          0,
+          18,
+          29,
+          1,
+          26,
+          0
+        ],
+        [
+          "all_ages",
+          "wind_hail",
+          30,
+          30,
+          26,
+          0,
+          4,
+          27,
+          0,
+          3,
+          0
+        ]
+      ],
+      "started_at": "2026-09-23T17:19:58.07801083Z"
+    },
+    {
+      "name": "schema_tables",
+      "status": "completed",
+      "row_count": 223,
+      "columns": [
+        "database",
+        "table_name"
+      ],
+      "started_at": "2026-09-23T17:20:07.581183511Z",
+      "note": "223 metadata table names returned; only row count retained in public log."
+    },
+    {
+      "name": "schema_acv",
+      "status": "completed",
+      "row_count": 4,
+      "columns": [
+        "acv_option",
+        "exclusion",
+        "source_rows",
+        "homes"
+      ],
+      "rows": [
+        [
+          "",
+          "",
+          246763,
+          246763
+        ],
+        [
+          "",
+          "selected",
+          7055,
+          7055
+        ],
+        [
+          "actual_cash_value",
+          "",
+          3720,
+          3720
+        ],
+        [
+          "actual_cash_value",
+          "selected",
+          2,
+          2
+        ]
+      ],
+      "started_at": "2026-09-23T17:20:07.828078149Z"
+    },
+    {
+      "name": "cohort_2_final",
+      "status": "completed",
+      "row_count": 2,
+      "columns": [
+        "excluded",
+        "homes",
+        "policies",
+        "texas_homes",
+        "texas_share_pct",
+        "inferred_auto_homes",
+        "inferred_auto_policies",
+        "age101_at_issue_homes",
+        "issue_differs_from_creation_homes",
+        "creation_to_issue_days"
+      ],
+      "rows": [
+        [
+          0,
+          250483,
+          213816,
+          31475,
+          12.565723023119334,
+          0,
+          0,
+          23323,
+          180776,
+          "[4, 27]"
+        ],
+        [
+          1,
+          7057,
+          6039,
+          306,
+          4.336120164375797,
+          249,
+          221,
+          2963,
+          5406,
+          "[5, 33]"
+        ]
+      ],
+      "started_at": "2026-09-23T17:20:08.377555213Z"
+    },
+    {
+      "name": "loss_fixed_size_bootstrap_10",
+      "status": "failed",
+      "row_count": 0,
+      "error": "MEMORY_LIMIT_EXCEEDED: array sampler attempted 1.57 TiB allocation against a 14.40 GiB limit; replaced by streaming policy-cluster Poisson weights."
+    },
+    {
+      "name": "loss_poisson_bootstrap_10",
+      "status": "completed",
+      "row_count": 2,
+      "columns": [
+        "age_scope",
+        "bootstrap_draws",
+        "valid_netted_draws",
+        "maximum_unmatched_wind_hail_dy",
+        "wind_hail_count_ae_interval",
+        "wind_hail_paid_ae_interval",
+        "control_paid_ae_interval",
+        "netted_paid_ratio_interval",
+        "paid_difference_per_home_year_interval",
+        "netted_incurred_interval",
+        "netted_paid_cap50k_interval",
+        "netted_incurred_cap50k_interval",
+        "ambiguous_claims"
+      ],
+      "rows": [
+        [
+          "101plus",
+          10,
+          10,
+          0.4791238877481177,
+          "[0.6691532736012487, 0.9256755431859709, 1.4282833959683978]",
+          "[0.023368083182353054, 0.04097668598748154, 0.05906785485624069]",
+          "[0.02464006431172929, 0.4742483778541504, 1.3070224277571478]",
+          "[0.035274300907491396, 0.09125318444756177, 2.0666896022851655]",
+          "[-2.171432420502572, 44.50170009052478, 134.2872380008499]",
+          "[0.029144300368727505, 0.0871339457792304, 1.6126781343959078]",
+          "[0.04209464263319851, 0.11621709102926597, 0.7683914663188068]",
+          "[0.026584476120069537, 0.10031762305131, 0.6014696934513086]",
+          0
+        ],
+        [
+          "all_ages",
+          10,
+          10,
+          0.17522245037645448,
+          "[0.6727163978836598, 1.0085119507137497, 1.1843439883522038]",
+          "[0.027976258850074348, 0.12333277742446158, 0.3372775611288341]",
+          "[0.14826778966625112, 1.0040264453375476, 2.1691305980886613]",
+          "[0.016247731964593556, 0.15572564392997765, 0.5850408967906214]",
+          "[5.714074994473765, 80.44672268385636, 198.3494688108227]",
+          "[0.02333592498586862, 0.11566821820146697, 1.0034594441886848]",
+          "[0.0607796669190905, 0.2916080518491534, 0.4514294853507663]",
+          "[0.1011244338728765, 0.35757154775485295, 0.8813417995110279]",
+          0
+        ]
+      ],
+      "started_at": "2026-09-23T17:28:39.999631979Z"
+    },
+    {
+      "name": "loss_poisson_bootstrap_2000",
+      "status": "result_unavailable",
+      "row_count": null,
+      "error": "Tool returned non-JSON delivery error; final interval output was not retrieved. Subsequent aggregate process check found one active query at 347.648 seconds, 36,762,981 source rows read and 4,808,363,527 bytes memory. No database failure inferred; no blind rerun or cancellation.",
+      "observed_at_utc": "2026-09-23T17:36:30.152232845Z"
+    },
+    {
+      "name": "bootstrap_execution_audit",
+      "status": "completed",
+      "row_count": 0,
+      "columns": [
+        "event_type",
+        "events",
+        "maximum_duration_ms",
+        "maximum_read_rows",
+        "peak_memory_bytes",
+        "exception_code",
+        "exception_summary"
+      ],
+      "rows": [],
+      "started_at": "2026-09-23T17:36:18.95553361Z"
+    },
+    {
+      "name": "bootstrap_process_audit",
+      "status": "completed",
+      "row_count": 1,
+      "columns": [
+        "active_queries",
+        "maximum_elapsed_seconds",
+        "rows_read",
+        "memory_bytes"
+      ],
+      "rows": [
+        [
+          1,
+          347.648325,
+          36762981,
+          4808363527
+        ]
+      ],
+      "started_at": "2026-09-23T17:36:30.152232845Z"
+    },
+    {
+      "name": "bootstrap_later_root_process_checkpoint",
+      "status": "operational_observation",
+      "source": "root agent read-only process aggregate",
+      "observed_date": "2026-09-23",
+      "active_queries": 1,
+      "elapsed_seconds_rounded": 475.6,
+      "source_rows_read_rounded": 51450000,
+      "memory_gb_rounded": 1.81,
+      "note": "Final interval output not retrieved. This later process checkpoint is not a statistical result; no cancellation or blind rerun performed."
+    }
+  ]
+}
