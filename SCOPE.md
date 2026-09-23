@@ -1,5 +1,7 @@
 # Roof dial: scope for the aperture analysis
 
+> **Codex review 2026-09-23:** CORRECTED. Lowering the bar is worth testing, but 83 is not established as the best setting and the effect on sales is unknown. Start with the [current takeaways in README](README.md#takeaways-from-the-first-read); the original scope below is preserved. See REVIEW-2026-09-23.md #RS1.
+
 *Job 1 of the dwelling alert project: duplicate the underwriter's roof surfacing exclusion work. Scoped 2026-08-20; every data claim below was verified against the warehouse that day (Metabase db 235, read-only probes).*
 
 > **Codex review 2026-09-23:** CORRECTED. Source assertions of verification are historical; this review distinguishes actual reruns from arithmetic and unresolved data dependencies. See REVIEW-2026-09-23.md #R2.

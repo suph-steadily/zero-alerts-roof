@@ -1,5 +1,31 @@
 # roof-dial
 
+## Takeaways from the first read
+
+**Lowering the bar is worth testing. We have not shown that 83 is the best setting or that adding more exclusions will leave sales unchanged.**
+
+A lower bar would automatically add a roof coverage exclusion to more homes. That could handle more of the work done manually today, but it would also restrict coverage on homes that previously had no exclusion.
+
+- **The idea still looks promising.** The updated sample using model v1.2.0 shows fewer extra exclusions per additional manual decision matched than the earlier sample that mixed model versions.
+- **83 is a candidate, not a settled choice.** The evidence does not clearly distinguish it from nearby settings such as 85.
+- **The financial cost is still unknown.** We can count extra coverage restrictions. We cannot yet reliably say how many sales they would lose or how much money they would save in claims.
+
+### What changing the bar costs
+
+In the updated sample, **moving from 85 to 83 matches 38 more exclusions recorded as manually applied, while adding exclusions to 56 homes that previously had none.** That is about **1.5 extra coverage restrictions per additional manual decision matched**, compared with 2.4 in the earlier mixed-model sample.
+
+This is a historical example, not a rollout forecast. It covers bound new-business homes aged 101+ (2026 minus year built), created May 1-August 15, 2026, using model v1.2.0, rechecked September 23. The samples differ, and who applied each exclusion is inferred from the records. Matching a manual coverage decision does not necessarily remove the whole underwriting review.
+
+### What we should do next
+
+**Run a limited test comparing 85 and 83 before choosing a setting for a broader rollout.** Measure whether underwriting work actually falls, whether fewer customers buy, and how agents use the roof-replacement answer that removes the exclusion. Use those measurements to decide whether the extra automation is worth the extra coverage restrictions.
+
+Read the [plain-English review summary](REVIEW-2026-09-23.md#plain-english-takeaway), the [bar calculations](REVIEW-2026-09-23.md#RS3), or the [remaining work](REVIEW-2026-09-23.md#prioritized-redo-list).
+
+## Earlier context and run instructions
+
+The material below preserves the earlier first read and its review notes. Start with the takeaways above for the current recommendation; the older figures and demo commands are historical evidence, not a rollout forecast.
+
 Job 1 of the dwelling alert project: where should the automatic roof surfacing exclusion's score bar sit? **`SCOPE.md` is the document to read (and share)**; the presentable version is the shared page: https://claude.ai/code/artifact/f04c8819-6ab0-4912-86c3-4f3328acadb0. This folder also carries the extract SQL, the verification queries behind every headline number (`sql/probes_20260820.sql`), and a runnable sweep tool.
 
 > **Codex review 2026-09-23:** WITHDRAWN. The probes do not emit every headline; the review records aggregate live reruns and the remaining decision-time gaps. See REVIEW-2026-09-23.md #R2.
@@ -12,6 +38,8 @@ Job 1 of the dwelling alert project: where should the automatic roof surfacing e
 
 No dependencies, plain built-in Python 3 (nothing to install). From this folder:
 
+> **Codex review 2026-09-23:** WITHDRAWN. This recipe omits bar83, mixes month bases, counts overlay event rows and still emits the withdrawn disposition class. See REVIEW-2026-09-23.md #R4.
+
 ```
 # zero-setup demo: the preview curve from the 8/20 probe counts
 python3 -m roof_dial example
@@ -23,7 +51,6 @@ python3 -m roof_dial sweep bound_book.csv --months 4.5 -o curve.md
 python3 -m roof_dial overlay outcomes.csv --window 90 -o overlay.md
 python3 -m roof_dial disposition bound_book.csv outcomes.csv --bar 80
 
-> **Codex review 2026-09-23:** WITHDRAWN. This recipe omits bar83, mixes month bases, counts overlay event rows and still emits the withdrawn disposition class. See REVIEW-2026-09-23.md #R4.
 ```
 
 Every table prints its denominators (per 100 of WHAT, over WHAT window) and its unscored counts; nothing is dropped silently.

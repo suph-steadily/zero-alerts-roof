@@ -1,5 +1,7 @@
 # PRD: Widen the roof dial, with an escape hatch
 
+> **Codex review 2026-09-23:** CORRECTED. The recommendation is a limited test of 85 and 83 before a broader rollout. We have not established the best setting, the effect on sales, or the effect of the roof-replacement answer. Start with the [current takeaways in README](README.md#takeaways-from-the-first-read). See REVIEW-2026-09-23.md #P25.
+
 *Draft v1, 2026-08-25. Owner: Suph. Engineering partner: Will Henry (free ~Sep 1).
 Workstream 1 of the Zero Alerts project (see "Do What the Underwriter Does").
 Status: DRAFT. Three supporting analyses in flight, marked [IN FLIGHT] below.*
