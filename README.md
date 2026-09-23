@@ -2,25 +2,46 @@
 
 ## Takeaways from the first read
 
-**Lowering the bar is worth testing. We have not shown that 83 is the best setting or that adding more exclusions will leave sales unchanged.**
+**Use 83 as the balanced starting bar for the old-home proposal, with the roof-replacement escape hatch.** The follow-up now checks every integer threshold and gives 83 an explicit mathematical case. This recommendation assumes a useful retained exclusion is worth roughly one to two times the net cost of an extra persistent restriction; that range is a working assumption, not a measured dollar value.
 
-A lower bar would automatically add a roof coverage exclusion to more homes. That could handle more of the work done manually today, but it would also restrict coverage on homes that previously had no exclusion.
+A lower bar automatically adds roof exclusions to more homes. The escape hatch can reduce the cost by removing exclusions after an agent attests to full roof replacement in the last 20 years. The calculation must count both extra restrictions removed and useful protection removed.
 
-- **The idea still looks promising.** The updated sample using model v1.2.0 shows fewer extra exclusions per additional manual decision matched than the earlier sample that mixed model versions.
-- **83 is a candidate, not a settled choice.** The evidence does not clearly distinguish it from nearby settings such as 85.
-- **The financial cost is still unknown.** We can count extra coverage restrictions. We cannot yet reliably say how many sales they would lose or how much money they would save in claims.
+- **83 survives the full comparison.** On the recent bound-home sample, it is the best integer bar when the value-to-cost ratio after the hatch is about 1.30-1.91. It also minimizes the worst missed value over the assumed range 1-2.
+- **The original reason for 83 was different.** It marked roughly the worst 20% of the old mixed-model bound book. It now selects 23.4% of current quote-homes; about 20% would be bar 85, or 86 for a strict cap.
+- **83 matches about half of the historical manual exclusions.** If the goal is to match at least 80%, the recent bound-home proxy requires bar 66 before the hatch. That is a much broader proposal.
 
 ### What changing the bar costs
 
-In the updated sample, **moving from 85 to 83 matches 38 more exclusions recorded as manually applied, while adding exclusions to 56 homes that previously had none.** That is about **1.5 extra coverage restrictions per additional manual decision matched**, compared with 2.4 in the earlier mixed-model sample.
+In the recent model-v1.2.0 bound sample:
 
-This is a historical example, not a rollout forecast. It covers bound new-business homes aged 101+ (2026 minus year built), created May 1-August 15, 2026, using model v1.2.0, rechecked September 23. The samples differ, and who applied each exclusion is inferred from the records. Matching a manual coverage decision does not necessarily remove the whole underwriting review.
+| Bar | Historical manual exclusions matched | Extra restrictions on previously unrestricted homes |
+|---:|---:|---:|
+| 85 | 134 of 295, or 45.4% | 97 |
+| **83** | **162 of 295, or 54.9%** | **125** |
+| 80 | 186 of 295, or 63.1% | 175 |
+
+**85 to 83 buys 28 more matches for 28 extra restrictions. Going from 83 to 80 buys another 24 matches for 50 extra restrictions.** These are before the escape hatch. A simulation removing only selections with CAPE-recorded recent roof years leaves 146 matches and 105 extra restrictions at 83, and still selects 83 at an assumed value-to-cost ratio of 1.5. Most remaining roof years are unknown, so this is not an estimate of actual agent answers.
+
+The recent sample covers new-business creations July 30-August 31, 2026, home age 101+, model v1.2.0, excluding CO/RI/WV, with issue observed before September 23. Who applied an exclusion is inferred from current records. These are historical coverage comparisons, not a rollout forecast, verified roof labels, or measured dollar costs. The [decision memo](THRESHOLD-DECISION-2026-09-23.md) separates bound-home comparisons from all-quote prompt volume.
 
 ### What we should do next
 
-**Run a limited test comparing 85 and 83 before choosing a setting for a broader rollout.** Measure whether underwriting work actually falls, whether fewer customers buy, and how agents use the roof-replacement answer that removes the exclusion. Use those measurements to decide whether the extra automation is worth the extra coverage restrictions.
+**Start with 83; use measured hatch outcomes to decide whether to move toward 80.** A sufficiently selective hatch can make 80 better. Financial value, customer response and actual attestation accuracy remain unmeasured. Sampling uncertainty also remains: 83 wins 45.55% of 2,000 policy resamples at the assumed ratio 1.5, so the exact score is not settled for all future traffic.
 
-Read the [plain-English review summary](REVIEW-2026-09-23.md#plain-english-takeaway), the [bar calculations](REVIEW-2026-09-23.md#RS3), or the [remaining work](REVIEW-2026-09-23.md#prioritized-redo-list).
+Removing the dwelling-age referral is a shared part of the PRD at every bar. Count its workflow benefit once; each extra coverage match is not automatically another underwriting review saved.
+
+Read [the number, its math, and when it changes](THRESHOLD-DECISION-2026-09-23.md), the [full integer results](review/threshold_empirical.md), or the [escape-hatch evidence](review/threshold_escape_hatch.md). The earlier [independent audit](REVIEW-2026-09-23.md) remains available for the full claim ledger.
+
+### Reproduce the current decision math
+
+These commands use the saved aggregate query results and require only Python 3:
+
+```sh
+python3 review/threshold_decision_math.py
+python3 -m unittest discover -s tests -p 'test_threshold_decision_math.py'
+```
+
+The SQL and run logs document the separate warehouse queries. The script recomputes the full threshold comparisons and hatch scenarios; it does not refresh the warehouse data.
 
 ## Earlier context and run instructions
 

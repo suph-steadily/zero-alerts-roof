@@ -1,6 +1,6 @@
 # Roof dial: scope for the aperture analysis
 
-> **Codex review 2026-09-23:** CORRECTED. Lowering the bar is worth testing, but 83 is not established as the best setting and the effect on sales is unknown. Start with the [current takeaways in README](README.md#takeaways-from-the-first-read); the original scope below is preserved. See REVIEW-2026-09-23.md #RS1.
+> **Codex review 2026-09-23, threshold follow-up:** The full integer comparison supports 83 as a balanced starting setting under explicit cost assumptions, including an escape-hatch sensitivity. See [the number and its math](THRESHOLD-DECISION-2026-09-23.md). Financial value and actual attestation behavior remain unmeasured. The original scope below is preserved.
 
 *Job 1 of the dwelling alert project: duplicate the underwriter's roof surfacing exclusion work. Scoped 2026-08-20; every data claim below was verified against the warehouse that day (Metabase db 235, read-only probes).*
 
