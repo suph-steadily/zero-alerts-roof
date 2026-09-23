@@ -4,7 +4,7 @@
 -- Expected if the first read is right: Original legacy all-age snapshot: April+ 633 endorsement policies and 106 cancellation policies; corrected issued tuple numbers may change. Missing or ambiguous records block acceptance.
 -- Output is aggregate only. Live current rows cannot restore an earlier warehouse snapshot.
 
-WITH 
+WITH
 issued AS (
  SELECT policy_id,dwelling_id,
         argMax(tuple(pol_prop_steadily_roof_condition_score_condition_score,prop_cov_roof_surfacing_exclusion,pol_ff_automated_roof_exclusion,pol_prop_steadily_roof_condition_score_decision,pol_prop_steadily_roof_condition_score_model_version,pol_prop_state,pol_prop_year_built,quote_id,pol_created_timestamp,quote_issued_timestamp),quote_issued_timestamp) AS b,
@@ -31,7 +31,7 @@ issued AS (
         min(issue_ts) AS first_issue_ts
  FROM homes GROUP BY policy_id
 )
-, 
+,
 roof_add AS (
  SELECT DISTINCT e_quote_id FROM dbt_dev.damr_uarnoe_evdetail_20260816
  WHERE e_col='roof_surfacing_exclusion' AND e_prev='' AND e_cur='selected'
@@ -74,7 +74,7 @@ SELECT 'policy' AS grain,kind,cohort,age_cut,horizon,
        sum(event_rows) AS events_before_policy_dedupe
 FROM expanded GROUP BY kind,cohort,age_cut,horizon;
 
-WITH 
+WITH
 issued AS (
  SELECT policy_id,dwelling_id,
         argMax(tuple(pol_prop_steadily_roof_condition_score_condition_score,prop_cov_roof_surfacing_exclusion,pol_ff_automated_roof_exclusion,pol_prop_steadily_roof_condition_score_decision,pol_prop_steadily_roof_condition_score_model_version,pol_prop_state,pol_prop_year_built,quote_id,pol_created_timestamp,quote_issued_timestamp),quote_issued_timestamp) AS b,
@@ -101,7 +101,7 @@ issued AS (
         min(issue_ts) AS first_issue_ts
  FROM homes GROUP BY policy_id
 )
-, 
+,
 roof_add AS (
  SELECT DISTINCT e_quote_id FROM dbt_dev.damr_uarnoe_evdetail_20260816
  WHERE e_col='roof_surfacing_exclusion' AND e_prev='' AND e_cur='selected'

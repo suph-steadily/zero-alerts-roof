@@ -30,7 +30,7 @@ LEFT JOIN
 ) AS a ON a.quote_id = p.quote_id
 WHERE p.quote_type = 'NewBusiness'
   AND p.quote_status = 'Issued'
-  AND p.pol_created_timestamp >= toDateTime('2026-04-01 00:00:00')   
+  AND p.pol_created_timestamp >= toDateTime('2026-04-01 00:00:00')
   AND p.pol_prop_year_built > 1700
   AND 2026 - p.pol_prop_year_built >= 80
 );

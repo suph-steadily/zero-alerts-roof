@@ -55,4 +55,3 @@ SELECT lane,age_band,state,toStartOfMonth(created) AS creation_month,
  quantileExactIf(0.5)(dateDiff('day',bind_ts,removed_ts),ever_removed) AS median_removal_days
 FROM final GROUP BY lane,age_band,state,creation_month ORDER BY lane,age_band,state,creation_month
 SETTINGS join_use_nulls=1;
-

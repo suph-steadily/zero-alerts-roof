@@ -44,4 +44,3 @@ SELECT age_band,state,toStartOfMonth(issued) AS issue_month,lane,count() AS full
  100.0*inspection_cancels_60d/full_clock_policies AS inspection_cancel_pct_60d
 FROM j GROUP BY age_band,state,issue_month,lane ORDER BY age_band,state,issue_month,lane
 SETTINGS join_use_nulls=1;
-

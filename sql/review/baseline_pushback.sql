@@ -4,7 +4,7 @@
 -- Expected if the first read is right: 64 removal event rows,63 policies; actor counts28 UW,22 agent,9 CX,5 other; nine bind-excluded policies and one auto signature claimed. No denominator/causal objection inference.
 -- Output is aggregate only. Live current rows cannot restore an earlier warehouse snapshot.
 
-WITH 
+WITH
 issued AS (
  SELECT policy_id,dwelling_id,
         argMax(tuple(pol_prop_steadily_roof_condition_score_condition_score,prop_cov_roof_surfacing_exclusion,pol_ff_automated_roof_exclusion,pol_prop_steadily_roof_condition_score_decision,pol_prop_steadily_roof_condition_score_model_version,pol_prop_state,pol_prop_year_built,quote_id,pol_created_timestamp,quote_issued_timestamp),quote_issued_timestamp) AS b,

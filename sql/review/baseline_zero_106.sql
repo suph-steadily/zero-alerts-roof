@@ -4,7 +4,7 @@
 -- Expected if the first read is right: Legacy April+ snapshot all ages: 106 cancellation policies, 12 score95+, zero exclude, one bind exclusion. None is assumed true.
 -- Output is aggregate only. Live current rows cannot restore an earlier warehouse snapshot.
 
-WITH 
+WITH
 issued AS (
  SELECT policy_id,dwelling_id,
         argMax(tuple(pol_prop_steadily_roof_condition_score_condition_score,prop_cov_roof_surfacing_exclusion,pol_ff_automated_roof_exclusion,pol_prop_steadily_roof_condition_score_decision,pol_prop_steadily_roof_condition_score_model_version,pol_prop_state,pol_prop_year_built,quote_id,pol_created_timestamp,quote_issued_timestamp),quote_issued_timestamp) AS b,

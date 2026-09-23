@@ -14,4 +14,3 @@ sum(exp_days*greatest(coalesce(claims,0),1))/365.25 AS after_claim_join_dy,
 after_claim_join_dy-correct_separate_dy AS excess_dy,
 100*(after_claim_join_dy/correct_separate_dy-1) AS inflation_pct
 FROM coh LEFT JOIN counts USING(dwelling_id) GROUP BY rse ORDER BY rse;
-

@@ -4,7 +4,7 @@
 -- Expected if the first read is right: Legacy table sums to106 cancellations; 38 score83+ (37 newly covered); bar90 count21 here vs22 overlay needs investigation.
 -- Output is aggregate only. Live current rows cannot restore an earlier warehouse snapshot.
 
-WITH 
+WITH
 issued AS (
  SELECT policy_id,dwelling_id,
         argMax(tuple(pol_prop_steadily_roof_condition_score_condition_score,prop_cov_roof_surfacing_exclusion,pol_ff_automated_roof_exclusion,pol_prop_steadily_roof_condition_score_decision,pol_prop_steadily_roof_condition_score_model_version,pol_prop_state,pol_prop_year_built,quote_id,pol_created_timestamp,quote_issued_timestamp),quote_issued_timestamp) AS b,
